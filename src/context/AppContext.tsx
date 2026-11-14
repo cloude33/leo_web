@@ -23,7 +23,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const savedTheme = localStorage.getItem('leo_theme') as Theme;
     const savedLang = localStorage.getItem('leo_lang') as Language;
-    if (savedTheme) setTheme(savedTheme);
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+      document.documentElement.classList.toggle('light', savedTheme === 'light');
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
     if (savedLang) setLang(savedLang);
     setMounted(true);
   }, []);
@@ -32,6 +37,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (!mounted) return;
     localStorage.setItem('leo_theme', theme);
     const root = document.documentElement;
+    root.setAttribute('data-theme', theme);
     if (theme === 'dark') {
       root.classList.add('dark');
       root.classList.remove('light');
@@ -47,16 +53,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   }, [lang, mounted]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   const t = (tr: string, en: string) => (lang === 'tr' ? tr : en);
 
   return (
     <AppContext.Provider value={{ lang, setLang, theme, toggleTheme, t }}>
-      <div className={theme === 'dark' ? 'dark' : 'light'}>
-        {children}
-      </div>
+      {children}
     </AppContext.Provider>
   );
 }
@@ -68,4 +72,3 @@ export function useApp() {
   }
   return context;
 }
-

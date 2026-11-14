@@ -39,9 +39,9 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
       {/* 1. ÖNE ÇIKAN PROJELER (Client Mockup 1 Exact Design) */}
       <section
         id="featured-projects"
-        className="py-16 md:py-24 border-b"
+        className="py-16 md:py-24 border-b transition-colors duration-300"
         style={{
-          backgroundColor: '#FAF8F5',
+          backgroundColor: 'var(--bg-section)',
           borderColor: 'var(--border-color)',
         }}
       >
@@ -49,16 +49,16 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
           {/* Header: Title + Gold Rule + Tüm Projeler link */}
           <div className="flex items-center justify-between mb-12">
             <div className="flex items-center gap-4">
-              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[#141414] tracking-tight font-normal">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[var(--text-primary)] tracking-tight font-normal">
                 {t('Öne Çıkan Projeler', 'Featured Projects')}
               </h2>
-              <span className="w-16 md:w-24 h-[1.5px] bg-[#9C7D54] hidden sm:block" />
+              <span className="w-16 md:w-24 h-[1.5px] bg-[var(--accent-gold)] hidden sm:block" />
             </div>
 
             <a
               href="#all-projects"
               onClick={scrollToAll}
-              className="text-sm font-serif-luxury text-[#141414] hover:text-[#9C7D54] flex items-center gap-1.5 transition-colors cursor-pointer group"
+              className="text-sm font-serif-luxury text-[var(--text-primary)] hover:text-[var(--accent-gold)] flex items-center gap-1.5 transition-colors cursor-pointer group"
             >
               <span>{t('Tüm Projeler', 'All Projects')}</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -74,7 +74,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                 className="group cursor-pointer flex flex-col"
               >
                 {/* Card Image */}
-                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-neutral-200 shadow-sm">
+                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-sm border border-[var(--border-color)]">
                   <Image
                     src={project.coverImage}
                     alt={project.title[lang]}
@@ -86,16 +86,16 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
 
                 {/* Card Title & Arrow */}
                 <div className="flex items-center justify-between mt-4">
-                  <h3 className="font-serif-luxury text-xl sm:text-2xl text-[#141414] group-hover:text-[#9C7D54] transition-colors leading-snug">
+                  <h3 className="font-serif-luxury text-xl sm:text-2xl text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors leading-snug">
                     {project.title[lang]}
                   </h3>
-                  <span className="text-[#141414] group-hover:text-[#9C7D54] group-hover:translate-x-1 transition-all text-xl font-light">
+                  <span className="text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] group-hover:translate-x-1 transition-all text-xl font-light">
                     →
                   </span>
                 </div>
 
                 {/* Card Subtitle */}
-                <p className="font-mono text-xs tracking-[0.2em] text-[#666460] uppercase mt-1">
+                <p className="font-mono text-xs tracking-[0.2em] text-[var(--text-muted)] uppercase mt-1">
                   {project.category === 'urla' ? 'URLA' : 'ACARKENT'} | {project.year}
                 </p>
               </div>
