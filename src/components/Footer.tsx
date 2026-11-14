@@ -86,12 +86,6 @@ export default function Footer() {
             <Link href="/iletisim" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
               {t('İletişim & Ofisler', 'Contact & Studios')}
             </Link>
-            <Link href="/#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors pt-1">
-              Urla Gaia Çiftlik Evleri (2024)
-            </Link>
-            <Link href="/#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-              Acarkent AcarVerde Penthouse (2026)
-            </Link>
           </div>
 
           <div className="lg:col-span-4 flex flex-col gap-3 font-mono text-xs">
