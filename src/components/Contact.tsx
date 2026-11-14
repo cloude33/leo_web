@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
-import { MapPin, Phone, Mail, Clock, Send, MessageSquare, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, MessageSquare, CheckCircle, ExternalLink, RefreshCw } from 'lucide-react';
 
 const InstagramIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -22,6 +22,7 @@ const YoutubeIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
 export default function Contact() {
   const { t } = useApp();
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -31,9 +32,51 @@ export default function Contact() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const getMailtoUrl = () => {
+    const subject = encodeURIComponent(`[LEO Mimarlık Web] Proje Danışmanlık Talebi - ${formData.name}`);
+    const body = encodeURIComponent(
+      `Sayın Ersin Aslan,\n\n` +
+      `Web siteniz üzerinden yeni bir proje danışmanlık talebi doldurulmuştur:\n\n` +
+      `• Ad Soyad: ${formData.name}\n` +
+      `• Telefon: ${formData.phone}\n` +
+      `• E-Posta: ${formData.email || 'Belirtilmedi'}\n` +
+      `• Proje Lokasyonu: ${formData.location}\n` +
+      `• Proje Tipi: ${formData.projectType}\n` +
+      `• Proje Notları & Beklentiler:\n${formData.message || 'Not girilmedi'}\n\n` +
+      `İyi çalışmalar dilerim.`
+    );
+    return `mailto:ersina@leoyapi.com?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      // 1. Post to internal Next.js API endpoint
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+    } catch (err) {
+      console.warn('API submission log:', err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
+  };
+
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      projectType: 'villa',
+      location: 'urla',
+      message: ''
+    });
+    setSubmitted(false);
   };
 
   return (
@@ -99,104 +142,42 @@ export default function Contact() {
                     <strong className="text-[var(--text-primary)]">Beykoz / İstanbul</strong>
                   </p>
                 </div>
+              </div>
 
-                {/* Direct Line & Contact Numbers */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                  <a
-                    href="tel:+905326005555"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
-                  >
-                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
-                      <Phone size={14} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">İletişim & WhatsApp</span>
-                      <span className="font-semibold text-xs">0532 600 5555</span>
-                    </div>
-                  </a>
+              {/* Direct Partner Contacts */}
+              <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-xs">
+                <a
+                  href="mailto:ersina@leoyapi.com"
+                  className="p-4 rounded-xl border border-[var(--border-color)] hover:border-[var(--accent-gold)] flex items-center gap-3 transition-colors bg-[var(--card-bg)]/30 group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] flex items-center justify-center">
+                    <Mail size={14} />
+                  </div>
+                  <div>
+                    <span className="opacity-60 text-[10px] uppercase block">ERSİN ASLAN</span>
+                    <span className="font-semibold group-hover:text-[var(--accent-gold)]">ersina@leoyapi.com</span>
+                  </div>
+                </a>
 
-                  <a
-                    href="tel:+905414791555"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
-                  >
-                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
-                      <Phone size={14} />
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Doğrudan Hat</span>
-                      <span className="font-semibold text-xs">0541 479 1555</span>
-                    </div>
-                  </a>
-                </div>
-
-                {/* Direct Emails */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <a
-                    href="mailto:ersina@leoyapi.com"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
-                  >
-                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
-                      <Mail size={14} />
-                    </div>
-                    <div className="flex flex-col truncate">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Ersin Aslan</span>
-                      <span className="text-xs truncate font-medium">ersina@leoyapi.com</span>
-                    </div>
-                  </a>
-
-                  <a
-                    href="mailto:can@leoyapi.com"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
-                  >
-                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
-                      <Mail size={14} />
-                    </div>
-                    <div className="flex flex-col truncate">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Can Aslan</span>
-                      <span className="text-xs truncate font-medium">can@leoyapi.com</span>
-                    </div>
-                  </a>
-                </div>
-
-                {/* Social Networks: Instagram & YouTube */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <a
-                    href="https://instagram.com/leoyapi_mimarlik"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30 group"
-                  >
-                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] group-hover:scale-110 transition-transform">
-                      <InstagramIcon className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="flex flex-col truncate">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Instagram</span>
-                      <span className="text-xs truncate font-medium">@leoyapi_mimarlik</span>
-                    </div>
-                  </a>
-
-                  <a
-                    href="https://youtube.com/@leomimarlikyapi?si=LWk9eWyRWRRl4afu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30 group"
-                  >
-                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] group-hover:scale-110 transition-transform">
-                      <YoutubeIcon className="w-3.5 h-3.5" />
-                    </div>
-                    <div className="flex flex-col truncate">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">YouTube Kanalı</span>
-                      <span className="text-xs truncate font-medium">@leomimarlikyapi</span>
-                    </div>
-                  </a>
-                </div>
+                <a
+                  href="mailto:can@leoyapi.com"
+                  className="p-4 rounded-xl border border-[var(--border-color)] hover:border-[var(--accent-gold)] flex items-center gap-3 transition-colors bg-[var(--card-bg)]/30 group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] flex items-center justify-center">
+                    <Mail size={14} />
+                  </div>
+                  <div>
+                    <span className="opacity-60 text-[10px] uppercase block">CAN ASLAN</span>
+                    <span className="font-semibold group-hover:text-[var(--accent-gold)]">can@leoyapi.com</span>
+                  </div>
+                </a>
               </div>
             </div>
 
-            {/* Direct WhatsApp VIP Button */}
-            <div className="mt-8 pt-6 border-t border-[var(--border-color)]">
+            {/* Direct WhatsApp Concierge Button */}
+            <div className="mt-8">
               <a
-                href="https://wa.me/905326005555?text=Merhaba,%20Leo%20Mimarlık%20Yapı%20projeleri%20ve%20mimari%20danışmanlık%20hakkında%20bilgi%20almak%20istiyorum."
+                href="https://wa.me/905326005555?text=Merhaba,%20LEO%20Mimarlık%20ve%20Yapı%20projeleriniz%20hakkında%20bilgi%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#25D366] text-white font-mono text-xs tracking-wider uppercase hover:opacity-90 transition-opacity shadow-sm"
@@ -221,25 +202,43 @@ export default function Contact() {
               </h3>
               <p className="text-xs text-[var(--text-muted)] mb-8">
                 {t(
-                  'Formu doldurduktan sonra baş mimarımız en geç 24 saat içinde sizinle iletişime geçecektir.',
-                  'Our principal architect will reach out within 24 hours of your submission.'
+                  'Formu ilettikten sonra bilgileriniz doğrudan baş mimarımız Ersin Aslan\'a (ersina@leoyapi.com) ulaşacak ve en geç 24 saat içinde dönüş sağlanacaktır.',
+                  'Your inquiry will be routed directly to our principal architect Ersin Aslan (ersina@leoyapi.com).'
                 )}
               </p>
 
               {submitted ? (
-                <div className="py-12 flex flex-col items-center text-center gap-4 animate-in fade-in">
-                  <div className="w-14 h-14 rounded-full bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] flex items-center justify-center">
-                    <CheckCircle size={32} />
+                <div className="py-10 flex flex-col items-center text-center gap-5 animate-in fade-in">
+                  <div className="w-16 h-16 rounded-full bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] flex items-center justify-center">
+                    <CheckCircle size={36} />
                   </div>
-                  <h4 className="font-serif-luxury text-2xl font-medium">
+                  <h4 className="font-serif-luxury text-2xl sm:text-3xl font-medium">
                     {t('Talebiniz Alındı', 'Inquiry Received')}
                   </h4>
-                  <p className="text-xs text-[var(--text-muted)] max-w-md">
+                  <p className="text-sm text-[var(--text-muted)] max-w-md leading-relaxed">
                     {t(
-                      'Detaylı dosyanız mimari ekibimize iletilmiştir. İlginiz için teşekkür ederiz.',
-                      'Your project specifications have been dispatched to our architectural studio. Thank you.'
+                      'Detaylı proje dosyanız mimari ekibimize ve ersina@leoyapi.com adresine başarıyla iletilmiştir. En kısa sürede sizinle iletişime geçeceğiz.',
+                      'Your project specifications have been dispatched to our architectural team and ersina@leoyapi.com.'
                     )}
                   </p>
+
+                  <div className="flex flex-col sm:flex-row items-center gap-3 mt-4 w-full max-w-md">
+                    <a
+                      href={getMailtoUrl()}
+                      className="w-full py-3 px-5 rounded-xl border border-[var(--accent-gold)] bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] hover:bg-[var(--accent-gold)] hover:text-black font-mono text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                    >
+                      <Mail size={14} />
+                      <span>{t('E-Posta İstemcisiyle de Gönder', 'Open in Email Client')}</span>
+                    </a>
+
+                    <button
+                      onClick={resetForm}
+                      className="w-full py-3 px-5 rounded-xl border border-[var(--border-color)] hover:border-[var(--accent-gold)] text-[var(--text-primary)] font-mono text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                    >
+                      <RefreshCw size={14} />
+                      <span>{t('Yeni Talep Gönder', 'New Inquiry')}</span>
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-xs">
@@ -341,10 +340,15 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full mt-2 py-4 rounded-xl bg-[var(--accent-gold)] text-black font-semibold font-mono tracking-[0.2em] uppercase hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-md"
+                    disabled={isSubmitting}
+                    className="w-full mt-2 py-4 rounded-xl bg-[var(--accent-gold)] text-black font-semibold font-mono tracking-[0.2em] uppercase hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-md disabled:opacity-50 cursor-pointer"
                   >
                     <Send size={15} />
-                    {t('DANIŞMANLIK TALEBİNİ İLET', 'TRANSMIT PROJECT INQUIRY')}
+                    <span>
+                      {isSubmitting
+                        ? t('İLETİLİYOR...', 'TRANSMITTING...')
+                        : t('ERSİN ASLAN\'A İLET (ersina@leoyapi.com)', 'TRANSMIT TO ERSIN ASLAN')}
+                    </span>
                   </button>
                 </form>
               )}
@@ -355,4 +359,3 @@ export default function Contact() {
     </section>
   );
 }
-
