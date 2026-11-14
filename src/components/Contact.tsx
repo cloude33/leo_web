@@ -139,7 +139,7 @@ export default function Contact() {
                       <Mail size={14} />
                     </div>
                     <div className="flex flex-col truncate">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Ersin A.</span>
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Ersin Aslan</span>
                       <span className="text-xs truncate font-medium">ersina@leoyapi.com</span>
                     </div>
                   </a>
@@ -152,7 +152,7 @@ export default function Contact() {
                       <Mail size={14} />
                     </div>
                     <div className="flex flex-col truncate">
-                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Can B.</span>
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Can Aslan</span>
                       <span className="text-xs truncate font-medium">can@leoyapi.com</span>
                     </div>
                   </a>
