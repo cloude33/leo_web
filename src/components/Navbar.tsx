@@ -50,27 +50,16 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center gap-3.5 group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
-          <div
-            className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent-gold)] bg-[#0a0a0a] flex-shrink-0"
-            style={{ width: '56px', height: '56px', minWidth: '56px', minHeight: '56px' }}
-          >
+        <Link href="/" className="flex items-center group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
+          <div className="relative h-11 sm:h-12 md:h-14 w-auto flex items-center">
             <Image
-              src="/logo_enhanced.avif"
-              alt="LEO Mimarlık Logo"
-              width={56}
-              height={56}
-              className="w-full h-full object-cover scale-100 rounded-full"
+              src="/logo_full_transparent.avif"
+              alt="LEO Mimarlık & Yapı"
+              width={174}
+              height={58}
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
-          </div>
-          <div className="flex flex-col items-center text-center justify-center">
-            <span className="font-aviano tracking-[0.28em] text-xl md:text-2xl font-bold uppercase transition-colors group-hover:text-[var(--accent-gold)] leading-none mb-1 text-center pl-1">
-              LEO
-            </span>
-            <span className="text-[10px] md:text-[11px] tracking-[0.24em] uppercase font-aviano font-bold text-[var(--text-primary)]/85 group-hover:text-[var(--text-primary)] transition-colors text-center whitespace-nowrap">
-              {t('MİMARLIK & YAPI', 'ARCHITECTURE & DESIGN')}
-            </span>
           </div>
         </Link>
 
