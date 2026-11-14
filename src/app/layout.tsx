@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'LEO YAPI & MİMARLIK | Urla & Acarkent Butik Mimari',
   description: "2004'ten beri Urla ve İstanbul'da çağdaş lüks, taş dokusu ve yüksek mimari konseptler üreten butik yapı stüdyosu.",
   icons: {
-    icon: '/logo_enhanced.avif',
+    icon: '/logo.avif',
   },
 };
 

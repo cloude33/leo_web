@@ -39,27 +39,16 @@ export default function Footer() {
         {/* Top Tier: Brand, Philosophy, Quick Nav */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <div className="flex items-center gap-3.5">
-              <div
-                className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 bg-[#0a0a0a] shadow-sm flex-shrink-0"
-                style={{ width: '48px', height: '48px', minWidth: '48px', minHeight: '48px' }}
-              >
+            <div className="flex items-center">
+              <Link href="/" className="relative h-12 md:h-14 w-auto flex items-center group">
                 <Image
-                  src="/logo_enhanced.avif"
-                  alt="Leo Logo"
-                  width={48}
-                  height={48}
-                  className="w-full h-full object-cover scale-100 rounded-full"
+                  src="/logo.avif"
+                  alt="LEO Mimarlık & Yapı Logo"
+                  width={174}
+                  height={58}
+                  className="h-11 md:h-13 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 />
-              </div>
-              <div className="flex flex-col items-center text-center justify-center">
-                <span className="font-aviano text-2xl font-bold tracking-[0.28em] uppercase block leading-none mb-1 pl-1 text-[var(--text-primary)]">
-                  LEO
-                </span>
-                <span className="text-[10px] sm:text-[10.5px] font-aviano tracking-[0.24em] font-bold uppercase block text-[var(--text-primary)]/85 whitespace-nowrap">
-                  MİMARLIK & YAPI
-                </span>
-              </div>
+              </Link>
             </div>
 
             <p className="text-xs text-[var(--text-muted)] leading-relaxed max-w-sm mt-2">

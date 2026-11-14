@@ -53,7 +53,7 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
         <Link href="/" className="flex items-center group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
           <div className="relative h-11 sm:h-12 md:h-14 w-auto flex items-center">
             <Image
-              src="/logo_full_transparent.avif"
+              src="/logo.avif"
               alt="LEO Mimarlık & Yapı"
               width={174}
               height={58}
