@@ -17,8 +17,12 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
   const { lang, t } = useApp();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  // Top 3 Featured Projects from Client Mockup 1
-  const featuredProjects = projectsData.slice(0, 3);
+  // Top 3 Featured Projects from the actual portfolio (Urla Gaia, Acarkent C Tipi, Acarkent Penthouse)
+  const featuredProjects = [
+    projectsData.find((p) => p.id === '3')!,
+    projectsData.find((p) => p.id === '12')!,
+    projectsData.find((p) => p.id === '1')!,
+  ].filter(Boolean);
 
   // Filtered list for full archive
   const filteredProjects = projectsData.filter((p) => {

@@ -34,121 +34,44 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
-    id: 'gaia-vadi',
-    slug: 'gaia-vadi',
+    id: '1',
+    slug: 'acarkent-penthouse',
     title: {
-      tr: 'Gaia Vadi Çiftlik Evleri',
-      en: 'Gaia Vadi Farm Estates'
-    },
-    category: 'urla',
-    location: {
-      tr: 'Urla, Özbek',
-      en: 'Urla, Ozbek'
-    },
-    year: 2024,
-    area: '345 m²',
-    landArea: '3.100 m²',
-    rooms: '5+1',
-    type: {
-      tr: 'Çiftlik Evi',
-      en: 'Farmstead Villa'
-    },
-    services: {
-      tr: ['Mimari Tasarım', 'İç Mimari Tasarım', 'Uygulama Projeleri', 'Mimari Görselleştirme', 'Anahtar Teslim Uygulama'],
-      en: ['Architectural Design', 'Interior Architecture', 'Working Drawings', '3D Visualization', 'Turnkey Construction']
-    },
-    description: {
-      tr: 'Urla doğasıyla bütünleşen, 3.100 m² tarımsal alan içerisinde sürdürülebilir lüksü temsil eden özel çiftlik villası tasarımı.',
-      en: 'An exclusive country villa set within a 3,100 m² agricultural estate, blending contemporary luxury with authentic Mediterranean nature.'
-    },
-    coverImage: '/projects/gaia-vadi-1/img_1.avif',
-    images: [
-      '/modal_gaia/main.avif',
-      '/modal_gaia/thumb_1.avif',
-      '/modal_gaia/thumb_2.avif',
-      '/modal_gaia/thumb_3.avif',
-      '/modal_gaia/thumb_4.avif',
-      '/modal_gaia/thumb_5.avif',
-      '/modal_gaia/thumb_6.avif',
-      '/modal_gaia/bottom_detail.avif'
-    ],
-    featured: true
-  },
-  {
-    id: 'acarkent-b514',
-    slug: 'acarkent-b514',
-    title: {
-      tr: 'Acarkent B514 Villa',
-      en: 'Acarkent B514 Villa'
-    },
-    category: 'acarkent',
-    location: {
-      tr: 'İstanbul, Beykoz',
-      en: 'Istanbul, Beykoz'
-    },
-    year: 2024,
-    area: '680 m²',
-    landArea: '1.850 m²',
-    rooms: '6+2',
-    type: {
-      tr: 'Müstakil Lüks Villa',
-      en: 'Bespoke Luxury Villa'
-    },
-    services: {
-      tr: ['Mimari Tasarım', 'İç Mimari Tasarım', 'Uygulama Projeleri', 'Mimari Görselleştirme', 'Anahtar Teslim Uygulama'],
-      en: ['Architectural Design', 'Interior Architecture', 'Working Drawings', '3D Visualization', 'Turnkey Construction']
-    },
-    description: {
-      tr: 'Acarkent siluetine hakim, cam ve antrasit çelik konstrüksiyonun çağdaş lüks ile buluştuğu müstakil havuzlu villa.',
-      en: 'A premier private villa overlooking Acarkent, featuring cantilevered glass terraces and modern architectural luxury.'
-    },
-    coverImage: '/featured/acarkent_b514.avif',
-    images: [
-      '/featured/acarkent_b514.avif',
-      '/projects/acarkent-c-tipi/img_1.avif',
-      '/projects/acarkent-c-tipi/img_2.avif',
-      '/projects/acarkent-c297/img_1.avif',
-      '/projects/acarkent-c297/img_2.avif',
-      '/projects/acarkent-c297/img_3.avif'
-    ],
-    featured: true
-  },
-  {
-    id: 'acarkent-acarverde',
-    slug: 'acarkent-acarverde',
-    title: {
-      tr: 'Acarkent Acar Verde Penthouse',
-      en: 'Acarkent Acar Verde Penthouse'
+      tr: 'Acarkent AcarVerde Penthouse C 246',
+      en: 'Acarkent AcarVerde Penthouse C 246'
     },
     category: 'acarkent',
     location: {
       tr: 'İstanbul, Acarkent',
       en: 'Istanbul, Acarkent'
     },
-    year: 2025,
-    area: '450 m²',
-    landArea: 'Rezidans',
-    rooms: '4+1',
+    year: 2024,
+    area: '1.250 m²',
+    rooms: '6+2 Penthouse',
     type: {
       tr: 'Lüks Çatı Katı Rezidansı',
       en: 'Luxury Penthouse Residence'
     },
     services: {
-      tr: ['Mimari Tasarım', 'İç Mimari Tasarım', 'Uygulama Projeleri', 'Mimari Görselleştirme', 'Anahtar Teslim Uygulama'],
-      en: ['Architectural Design', 'Interior Architecture', 'Working Drawings', '3D Visualization', 'Turnkey Construction']
+      tr: ['Uygulama Projesi', 'İç Mimari Tasarım', 'Mimari Tasarım', 'Uygulama'],
+      en: ['Working Drawings', 'Interior Architecture', 'Architectural Design', 'Execution']
     },
     description: {
       tr: 'Boğaz ve orman siluetine hakim, mermer ve pirinç detayların minimalist geometri ile buluştuğu imza penthouse projesi.',
       en: 'A signature penthouse project harmonizing panoramic vistas, monolithic stone surfaces, and refined bronze details.'
     },
-    coverImage: '/featured/acarkent_acarverde.avif',
+    coverImage: '/projects/acarkent-penthouse/img_2.avif',
     images: [
-      '/featured/acarkent_acarverde.avif',
+      '/projects/acarkent-penthouse/img_1.avif',
       '/projects/acarkent-penthouse/img_2.avif',
       '/projects/acarkent-penthouse/img_3.avif',
       '/projects/acarkent-penthouse/img_4.avif',
       '/projects/acarkent-penthouse/img_5.avif',
-      '/projects/acarkent-penthouse/img_6.avif'
+      '/projects/acarkent-penthouse/img_6.avif',
+      '/projects/acarkent-penthouse/img_7.avif',
+      '/projects/acarkent-penthouse/img_8.avif',
+      '/projects/acarkent-penthouse/img_9.avif',
+      '/projects/acarkent-penthouse/img_10.avif'
     ],
     featured: true
   },
@@ -188,8 +111,7 @@ export const projectsData: Project[] = [
       '/projects/batum-swiss-otel/img_7.avif',
       '/projects/batum-swiss-otel/img_8.avif',
       '/projects/batum-swiss-otel/img_9.avif'
-    ],
-    featured: true
+    ]
   },
   {
     id: '3',
@@ -542,7 +464,8 @@ export const projectsData: Project[] = [
     images: [
       '/projects/acarkent-c-tipi/img_1.avif',
       '/projects/acarkent-c-tipi/img_2.avif'
-    ]
+    ],
+    featured: true
   },
   {
     id: '13',

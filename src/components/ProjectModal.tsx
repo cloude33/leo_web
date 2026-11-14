@@ -118,6 +118,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {t('HAKKIMIZDA', 'ABOUT')}
           </Link>
           <Link
+            href="/hizmetler"
+            onClick={onClose}
+            className="hover:text-[var(--accent-gold)] transition-colors opacity-80 hover:opacity-100 hidden md:block"
+          >
+            {t('HİZMETLER', 'SERVICES')}
+          </Link>
+          <Link
             href="/iletisim"
             onClick={onClose}
             className="hover:text-[var(--accent-gold)] transition-colors opacity-80 hover:opacity-100"
