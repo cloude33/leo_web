@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-page: #F8F6F0;
+    --text-primary: #141414;
+    --text-muted: #666460;
+    --border-color: #E2DDD5;
+    --card-bg: #FFFFFF;
+    --accent-gold: #9C7D54;
+    --nav-bg: rgba(248, 246, 240, 0.90);
+    --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+    --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .dark {
+    --bg-page: #0C0D0F;
+    --text-primary: #F2EFEB;
+    --text-muted: #8F8C86;
+    --border-color: #22252C;
+    --card-bg: #14161C;
+    --accent-gold: #D2B07E;
+    --nav-bg: rgba(12, 13, 15, 0.90);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* Custom editorial styles */
+.font-serif-luxury {
+  font-family: var(--font-serif);
+}
+
+.architectural-grid {
+  background-size: 60px 60px;
+  background-image: 
+    linear-gradient(to right, rgba(156, 125, 84, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(156, 125, 84, 0.05) 1px, transparent 1px);
+}
+
+.dark .architectural-grid {
+  background-image: 
+    linear-gradient(to right, rgba(210, 176, 126, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(210, 176, 126, 0.05) 1px, transparent 1px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent-gold);
+  border-radius: 3px;
+}
