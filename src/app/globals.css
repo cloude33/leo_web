@@ -2,11 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap');
 
 @font-face {
-  font-family: 'Asteria';
-  src: local('Asteria Bold'), local('Asteria-Bold'), local('Asteria'),
-       url('/fonts/Asteria-Bold.woff2') format('woff2'),
-       url('/fonts/Asteria-Bold.otf') format('opentype'),
-       url('/fonts/Asteria-Bold.ttf') format('truetype');
+  font-family: 'Aviano Serif';
+  src: url('/fonts/AvianoSerif-Bold.woff2') format('woff2'),
+       url('/fonts/AvianoSerif-Bold.ttf') format('truetype'),
+       local('Aviano Serif Bold'),
+       local('AvianoSerif-Bold'),
+       local('Aviano Serif W00 Bold'),
+       local('Aviano Serif');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -53,8 +55,9 @@ body {
   font-family: var(--font-serif);
 }
 
+.font-aviano,
 .font-asteria {
-  font-family: 'Asteria', 'Asteria Bold', 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-family: 'Aviano Serif', 'Aviano Serif W00 Bold', 'Cinzel', 'Playfair Display', Georgia, serif;
   font-weight: 700;
 }
 

@@ -49,10 +49,10 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col items-center text-center justify-center">
-                <span className="font-asteria text-2xl font-bold tracking-[0.28em] uppercase block leading-none mb-1 pl-1 text-[var(--text-primary)]">
+                <span className="font-aviano text-2xl font-bold tracking-[0.28em] uppercase block leading-none mb-1 pl-1 text-[var(--text-primary)]">
                   LEO
                 </span>
-                <span className="text-[10px] sm:text-[10.5px] font-asteria tracking-[0.24em] font-bold uppercase block text-[var(--text-primary)]/85 whitespace-nowrap">
+                <span className="text-[10px] sm:text-[10.5px] font-aviano tracking-[0.24em] font-bold uppercase block text-[var(--text-primary)]/85 whitespace-nowrap">
                   MİMARLIK & YAPI
                 </span>
               </div>
