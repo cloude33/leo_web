@@ -30,23 +30,12 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
     { label: t('ANA SAYFA', 'HOME'), href: '/' },
     { label: t('PROJELER', 'PROJECTS'), href: '/#projects' },
     { label: t('HAKKIMIZDA', 'ABOUT'), href: '/hakkimizda' },
-    { label: t('HİZMETLER', 'SERVICES'), href: '/hizmetler' },
     { label: t('İLETİŞİM', 'CONTACT'), href: '/iletisim' },
   ];
 
-  const isNavSolid = scrolled || (pathname && pathname !== '/');
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isNavSolid
-          ? 'py-2.5 backdrop-blur-md shadow-sm border-b'
-          : 'py-4 md:py-5 bg-transparent'
-      }`}
-      style={{
-        backgroundColor: isNavSolid ? 'var(--nav-bg)' : 'transparent',
-        borderColor: isNavSolid ? 'var(--border-color)' : 'transparent',
-      }}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3.5 md:py-4 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#22252C]"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand / Logo */}
