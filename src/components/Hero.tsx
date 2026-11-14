@@ -55,20 +55,7 @@ export default function Hero() {
         ONE BESPOKE CONCEPT PER YEAR
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-20 w-full flex flex-col items-center text-center">
-        {/* Editorial Sub-badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[var(--accent-gold)]/40 bg-[var(--card-bg)]/60 backdrop-blur-md mb-8 shadow-sm"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-gold)] animate-pulse" />
-          <span className="text-[11px] tracking-[0.25em] font-mono uppercase text-[var(--accent-gold)]">
-            {t("2004'TEN BERİ BUTİK MİMARİ VE YAPI", "BOUTIQUE ARCHITECTURE & DESIGN SINCE 2004")}
-          </span>
-        </motion.div>
-
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-20 w-full flex flex-col items-center text-center pt-8 md:pt-12">
         {/* Display Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
