@@ -12,10 +12,7 @@ export default function Home() {
   return (
     <main className="min-h-screen selection:bg-[var(--accent-gold)] selection:text-black">
       {/* Editorial Navigation */}
-      <Navbar
-        onFilterCategory={(cat) => setFilterCategory(cat)}
-        activeCategory={filterCategory}
-      />
+      <Navbar />
 
       {/* Cinematic Hero Showcase */}
       <Hero />

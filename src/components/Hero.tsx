@@ -9,21 +9,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Hero() {
   const { t } = useApp();
 
+  // Genuine high-resolution architectural portfolio photos (clean, no burned-in text)
   const slides = [
     {
       id: 'gaia-vadi',
       title: 'Gaia Vadi Çiftlik Evleri',
-      src: '/hero_gaia_vadi.avif',
-    },
-    {
-      id: 'acarkent-b514',
-      title: 'Acarkent B514 Villa',
-      src: '/featured/acarkent_b514.avif',
+      src: '/projects/gaia-vadi-1/img_1.avif',
     },
     {
       id: 'acarkent-penthouse',
       title: 'Acarkent Acar Verde Penthouse',
-      src: '/featured/acarkent_acarverde.avif',
+      src: '/projects/acarkent-penthouse/img_1.avif',
+    },
+    {
+      id: 'gaia-vadi-tas',
+      title: 'Urla Gaia Taş Konutları',
+      src: '/projects/gaia-vadi-1/img_10.avif',
     },
   ];
 
@@ -45,7 +46,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="hero" className="relative w-full h-[540px] sm:h-[620px] md:h-[720px] lg:h-[820px] overflow-hidden bg-black select-none pt-20">
+    <section id="hero" className="relative w-full h-[540px] sm:h-[640px] md:h-[740px] lg:h-[840px] overflow-hidden bg-black select-none pt-20">
       {/* Background Slides with Fade Transition */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -53,7 +54,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 1.02 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           className="absolute inset-0 w-full h-full"
         >
           <Image
@@ -64,8 +65,8 @@ export default function Hero() {
             priority
             className="object-cover object-center"
           />
-          {/* Subtle vignette gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+          {/* Subtle cinematic vignette gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/30 pointer-events-none" />
         </motion.div>
       </AnimatePresence>
 
@@ -76,18 +77,18 @@ export default function Hero() {
           <div className="flex flex-col gap-4">
             <button
               onClick={scrollToFeatured}
-              className="inline-flex items-center gap-3 px-6 py-3 border border-[#9C7D54] bg-black/40 backdrop-blur-sm text-[#D2B07E] hover:bg-[#9C7D54]/20 font-mono text-xs tracking-[0.2em] uppercase transition-all duration-300 w-fit cursor-pointer"
+              className="inline-flex items-center gap-3 px-6 py-3 border border-[#9C7D54] bg-black/50 backdrop-blur-sm text-[#D2B07E] hover:bg-[#9C7D54]/25 hover:border-[#D2B07E] font-mono text-xs tracking-[0.2em] uppercase transition-all duration-300 w-fit cursor-pointer group"
             >
               <span>{t('PROJELERİ İNCELE', 'EXPLORE PROJECTS')}</span>
-              <span>→</span>
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </button>
 
             {/* Slide Index & Progress Bar */}
             <div className="flex items-center gap-4 text-xs font-mono text-white/90">
-              <span className="tracking-widest">
+              <span className="tracking-widest font-medium">
                 {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
               </span>
-              <div className="w-20 h-[1.5px] bg-white/30 relative overflow-hidden">
+              <div className="w-24 h-[1.5px] bg-white/30 relative overflow-hidden">
                 <div
                   className="h-full bg-[#D2B07E] transition-all duration-500"
                   style={{ width: `${((current + 1) / slides.length) * 100}%` }}

@@ -61,7 +61,7 @@ export const projectsData: Project[] = [
       tr: 'Urla doğasıyla bütünleşen, 3.100 m² tarımsal alan içerisinde sürdürülebilir lüksü temsil eden özel çiftlik villası tasarımı.',
       en: 'An exclusive country villa set within a 3,100 m² agricultural estate, blending contemporary luxury with authentic Mediterranean nature.'
     },
-    coverImage: '/featured/gaia_vadi.avif',
+    coverImage: '/projects/gaia-vadi-1/img_1.avif',
     images: [
       '/modal_gaia/main.avif',
       '/modal_gaia/thumb_1.avif',

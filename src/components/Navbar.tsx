@@ -7,12 +7,7 @@ import { usePathname } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
-interface NavbarProps {
-  onFilterCategory?: (category: 'all' | 'urla' | 'acarkent') => void;
-  activeCategory?: string;
-}
-
-export default function Navbar({ onFilterCategory, activeCategory = 'all' }: NavbarProps) {
+export default function Navbar() {
   const { lang, setLang, theme, toggleTheme, t } = useApp();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
@@ -35,29 +30,32 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3.5 md:py-4 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#22252C]"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3.5 md:py-4 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[#22252C] ${
+        scrolled ? 'shadow-lg shadow-black/40' : ''
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand / Logo */}
-        <Link href="/" className="flex items-center group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
-          <div className="relative h-11 sm:h-12 md:h-14 w-auto flex items-center">
+        <Link href="/" className="flex items-center group flex-shrink-0">
+          <div className="relative h-11 sm:h-12 md:h-13 w-auto flex items-center">
             <Image
               src="/logo.avif"
               alt="LEO Mimarlık & Yapı"
-              width={174}
-              height={58}
-              className="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              width={200}
+              height={66}
+              className="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
               priority
             />
           </div>
         </Link>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-7 lg:gap-9">
+        {/* Desktop Nav Links (High Contrast, Crisp & Legible) */}
+        <nav className="hidden md:flex items-center gap-8 lg:gap-11">
           {navLinks.map((item) => {
-            const isActive = item.href === '/'
-              ? pathname === '/'
-              : item.href.startsWith('/#')
+            const isActive =
+              item.href === '/'
+                ? pathname === '/'
+                : item.href.startsWith('/#')
                 ? false
                 : pathname === item.href;
 
@@ -65,10 +63,10 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-xs tracking-[0.2em] uppercase font-medium transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:bg-[var(--accent-gold)] hover:after:w-full after:transition-all after:duration-300 ${
+                className={`text-xs tracking-[0.22em] uppercase font-mono transition-all py-1.5 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-[#D2B07E] hover:after:w-full after:transition-all after:duration-300 ${
                   isActive
-                    ? 'text-[var(--accent-gold)] font-semibold after:w-full'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-gold)] after:w-0'
+                    ? 'text-[#D2B07E] font-semibold after:w-full'
+                    : 'text-white/85 hover:text-[#D2B07E] after:w-0'
                 }`}
               >
                 {item.label}
@@ -77,48 +75,12 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
           })}
         </nav>
 
-        {/* Quick Category Jump & Controls */}
-        <div className="hidden lg:flex items-center gap-4">
-          {/* Urla / Acarkent direct switcher */}
-          {onFilterCategory && (
-            <div className="flex items-center bg-[var(--border-color)]/30 rounded-full p-1 text-[11px] font-mono tracking-wider">
-              <button
-                onClick={() => onFilterCategory('all')}
-                className={`px-3 py-1 rounded-full transition-all ${
-                  activeCategory === 'all'
-                    ? 'bg-[var(--accent-gold)] text-black font-semibold'
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                {t('TÜMÜ', 'ALL')}
-              </button>
-              <button
-                onClick={() => onFilterCategory('urla')}
-                className={`px-3 py-1 rounded-full transition-all ${
-                  activeCategory === 'urla'
-                    ? 'bg-[var(--accent-gold)] text-black font-semibold'
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                URLA
-              </button>
-              <button
-                onClick={() => onFilterCategory('acarkent')}
-                className={`px-3 py-1 rounded-full transition-all ${
-                  activeCategory === 'acarkent'
-                    ? 'bg-[var(--accent-gold)] text-black font-semibold'
-                    : 'opacity-70 hover:opacity-100'
-                }`}
-              >
-                ACARKENT
-              </button>
-            </div>
-          )}
-
+        {/* Desktop Controls (Clean & Minimal) */}
+        <div className="hidden md:flex items-center gap-3">
           {/* Dil Seçimi */}
           <button
             onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}
-            className="text-xs font-mono tracking-wider px-2.5 py-1 rounded border border-[var(--border-color)] hover:border-[var(--accent-gold)] transition-colors"
+            className="text-[11px] font-mono tracking-widest px-2.5 py-1 rounded border border-white/20 text-white/80 hover:text-[#D2B07E] hover:border-[#D2B07E] transition-colors cursor-pointer"
             title={lang === 'tr' ? 'Switch to English' : 'Türkçe\'ye geç'}
           >
             {lang === 'tr' ? 'EN' : 'TR'}
@@ -127,30 +89,30 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
           {/* Tema Seçimi */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full border border-[var(--border-color)] hover:border-[var(--accent-gold)] transition-colors text-[var(--accent-gold)]"
+            className="p-1.5 rounded-full border border-white/20 text-white/80 hover:text-[#D2B07E] hover:border-[#D2B07E] transition-colors cursor-pointer"
             title={theme === 'dark' ? t('Açık Tema', 'Light Theme') : t('Koyu Tema', 'Dark Theme')}
           >
             {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
           </button>
         </div>
 
-        {/* Mobile Hamburger */}
-        <div className="flex md:hidden items-center gap-3">
+        {/* Mobile Hamburger & Controls */}
+        <div className="flex md:hidden items-center gap-2.5">
           <button
             onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}
-            className="text-xs font-mono px-2 py-1 border border-[var(--border-color)] rounded"
+            className="text-xs font-mono px-2 py-1 border border-white/20 text-white/80 rounded"
           >
             {lang === 'tr' ? 'EN' : 'TR'}
           </button>
           <button
             onClick={toggleTheme}
-            className="p-1.5 text-[var(--accent-gold)]"
+            className="p-1.5 text-white/80 hover:text-[#D2B07E]"
           >
             {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 opacity-90"
+            className="p-1.5 text-white ml-1"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -160,14 +122,12 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div
-          className="md:hidden border-b px-6 py-6 flex flex-col gap-5 animate-in slide-in-from-top-4 duration-300"
-          style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)' }}
-        >
+        <div className="md:hidden border-b px-6 py-6 flex flex-col gap-4 animate-in slide-in-from-top-4 duration-300 bg-[#0e0e10] border-[#22252C]">
           {navLinks.map((item) => {
-            const isActive = item.href === '/'
-              ? pathname === '/'
-              : item.href.startsWith('/#')
+            const isActive =
+              item.href === '/'
+                ? pathname === '/'
+                : item.href.startsWith('/#')
                 ? false
                 : pathname === item.href;
 
@@ -176,36 +136,18 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
                 key={item.href}
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`text-sm font-medium tracking-widest uppercase py-1.5 transition-colors ${
+                className={`text-sm font-medium tracking-widest uppercase py-2 transition-colors ${
                   isActive
-                    ? 'text-[var(--accent-gold)] font-bold pl-2 border-l-2 border-[var(--accent-gold)]'
-                    : 'hover:text-[var(--accent-gold)]'
+                    ? 'text-[#D2B07E] font-bold pl-3 border-l-2 border-[#D2B07E]'
+                    : 'text-white/85 hover:text-[#D2B07E]'
                 }`}
               >
                 {item.label}
               </Link>
             );
           })}
-          {onFilterCategory && (
-            <div className="flex items-center gap-2 pt-2 border-t border-[var(--border-color)]">
-              <span className="text-xs opacity-60 font-mono">{t('FİLTRE:', 'FILTER:')}</span>
-              <button
-                onClick={() => { onFilterCategory('urla'); setMobileMenuOpen(false); }}
-                className="text-xs px-3 py-1 rounded bg-[var(--border-color)]/40 font-mono"
-              >
-                URLA
-              </button>
-              <button
-                onClick={() => { onFilterCategory('acarkent'); setMobileMenuOpen(false); }}
-                className="text-xs px-3 py-1 rounded bg-[var(--border-color)]/40 font-mono"
-              >
-                ACARKENT
-              </button>
-            </div>
-          )}
         </div>
       )}
     </header>
   );
 }
-
