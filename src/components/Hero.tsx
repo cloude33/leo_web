@@ -51,7 +51,7 @@ export default function Hero() {
         URLA & ACARKENT ARCHITECTURAL ARCHIVE
       </div>
       <div className="absolute top-28 right-8 hidden lg:block text-right text-[11px] font-mono tracking-widest opacity-40 select-none z-20">
-        ESTABLISHED 2006<br />
+        ESTABLISHED 2004<br />
         ONE BESPOKE CONCEPT PER YEAR
       </div>
 
@@ -65,7 +65,7 @@ export default function Hero() {
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent-gold)] animate-pulse" />
           <span className="text-[11px] tracking-[0.25em] font-mono uppercase text-[var(--accent-gold)]">
-            {t("2006'DAN BERİ BUTİK MİMARİ VE YAPI", "BOUTIQUE ARCHITECTURE & DESIGN SINCE 2006")}
+            {t("2004'TEN BERİ BUTİK MİMARİ VE YAPI", "BOUTIQUE ARCHITECTURE & DESIGN SINCE 2004")}
           </span>
         </motion.div>
 
@@ -116,13 +116,13 @@ export default function Hero() {
             {t('PROJELERİ İNCELE', 'EXPLORE PROJECTS')}
             <ArrowDown size={14} className="group-hover:translate-y-0.5 transition-transform" />
           </a>
-          <a
-            href="#contact"
+          <Link
+            href="/iletisim"
             className="px-8 py-3.5 rounded-full border border-[var(--border-color)] bg-[var(--card-bg)]/40 hover:border-[var(--accent-gold)] text-xs tracking-[0.2em] uppercase transition-all duration-300 backdrop-blur-sm flex items-center gap-2"
           >
             {t('ÖZEL GÖRÜŞME', 'PRIVATE CONSULTATION')}
             <ArrowUpRight size={14} />
-          </a>
+          </Link>
         </motion.div>
 
         {/* Hero Visual Showcase */}

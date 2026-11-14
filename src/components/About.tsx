@@ -10,7 +10,7 @@ export default function About() {
 
   const milestones = [
     {
-      year: '2006',
+      year: '2004',
       title: t('Kuruluş & İlk Temeller', 'Foundation & Beginnings'),
       desc: t('İstanbul ve Ege genelinde butik mimari ve ince yapı taahhüt yolculuğumuz başladı.', 'Inception of boutique architecture and fine construction across Istanbul and Aegean coast.')
     },
@@ -61,7 +61,7 @@ export default function About() {
             <div className="absolute -bottom-6 -right-4 md:-right-8 p-6 rounded-xl border bg-[var(--card-bg)] shadow-xl max-w-xs"
               style={{ borderColor: 'var(--border-color)' }}
             >
-              <div className="font-serif-luxury text-4xl text-[var(--accent-gold)] font-bold">18+</div>
+              <div className="font-serif-luxury text-4xl text-[var(--accent-gold)] font-bold">22+</div>
               <div className="text-xs font-mono uppercase tracking-wider text-[var(--text-muted)] mt-1">
                 {t('Yıllık Kesintisiz Butik Mimari Tecrübesi', 'Years of Continuous Bespoke Craftsmanship')}
               </div>
@@ -85,8 +85,8 @@ export default function About() {
 
             <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed">
               {t(
-                'Leo Mimarlık & Yapı olarak 2006 yılından bu yana felsefemiz değişmedi: Bir yapının gerçek lüksü; ölçeğinde değil, malzeme samimiyetinde, ışıkla kurduğu ilişkide ve içinde yaşayan insanın ruhuna sunduğu dinginliktedir.',
-                'Since 2006, our doctrine at Leo Architecture & Construction remains unwavering: True luxury does not reside in brute scale, but in material honesty, a reverent relationship with natural light, and the serenity it bestows upon its inhabitants.'
+                'Leo Mimarlık & Yapı olarak 2004 yılından bu yana felsefemiz değişmedi: Bir yapının gerçek lüksü; ölçeğinde değil, malzeme samimiyetinde, ışıkla kurduğu ilişkide ve içinde yaşayan insanın ruhuna sunduğu dinginliktedir.',
+                'Since 2004, our doctrine at Leo Architecture & Construction remains unwavering: True luxury does not reside in brute scale, but in material honesty, a reverent relationship with natural light, and the serenity it bestows upon its inhabitants.'
               )}
             </p>
 

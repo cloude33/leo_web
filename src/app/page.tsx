@@ -4,9 +4,6 @@ import React, { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Projects from '@/components/Projects';
-import About from '@/components/About';
-import Services from '@/components/Services';
-import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -20,23 +17,14 @@ export default function Home() {
         activeCategory={filterCategory}
       />
 
-      {/* Cinematic Hero */}
+      {/* Cinematic Hero Showcase */}
       <Hero />
 
-      {/* Chronological Projects Archive (Client drawing layout) */}
+      {/* Chronological Projects Archive */}
       <Projects
         filterCategory={filterCategory}
         setFilterCategory={setFilterCategory}
       />
-
-      {/* Philosophy & Craftsmanship */}
-      <About />
-
-      {/* Architectural Capabilities & Scope */}
-      <Services />
-
-      {/* Private Consultation & Direct VIP WhatsApp */}
-      <Contact />
 
       {/* Refined Footer */}
       <Footer />

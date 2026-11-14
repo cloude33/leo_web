@@ -60,30 +60,33 @@ export default function Footer() {
 
             <p className="text-xs text-[var(--text-muted)] leading-relaxed max-w-sm mt-2">
               {t(
-                "2006'dan beri Urla'nın taş dokusunu ve Ege'nin dinginliğini zamansız modernizm ile buluşturan butik mimarlık ve anahtar teslim yapı stüdyosu.",
-                'A boutique architectural design and turnkey construction studio synthesizing Urla stone masonry and Aegean calm with enduring modernism since 2006.'
+                "2004'ten beri Urla'nın taş dokusunu ve Ege'nin dinginliğini zamansız modernizm ile buluşturan butik mimarlık ve anahtar teslim yapı stüdyosu.",
+                'A boutique architectural design and turnkey construction studio synthesizing Urla stone masonry and Aegean calm with enduring modernism since 2004.'
               )}
             </p>
           </div>
 
           <div className="lg:col-span-3 flex flex-col gap-3 font-mono text-xs">
             <span className="text-[var(--accent-gold)] font-semibold tracking-widest uppercase mb-1">
-              {t('MİMARİ KOLEKSİYONLAR', 'ARCHITECTURAL PORTFOLIO')}
+              {t('KURUMSAL & PORTFOLYO', 'STUDIO & PORTFOLIO')}
             </span>
-            <Link href="#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/#projects" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
+              {t('Mimari Projeler Arşivi', 'Architectural Projects')}
+            </Link>
+            <Link href="/hakkimizda" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
+              {t('Hakkımızda & Felsefemiz', 'About & Philosophy')}
+            </Link>
+            <Link href="/hizmetler" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
+              {t('Hizmetlerimiz & Kapsam', 'Services & Scope')}
+            </Link>
+            <Link href="/iletisim" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
+              {t('İletişim & Ofisler', 'Contact & Studios')}
+            </Link>
+            <Link href="/#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors pt-1">
               Urla Gaia Çiftlik Evleri (2024)
             </Link>
-            <Link href="#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+            <Link href="/#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
               Acarkent AcarVerde Penthouse (2026)
-            </Link>
-            <Link href="#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-              Urla Kuşçular 12 Taş Ev (2016)
-            </Link>
-            <Link href="#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-              Batum Swiss Otel Azure (2026)
-            </Link>
-            <Link href="#projects" className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
-              Acarkent C 297 Malikane (2012)
             </Link>
           </div>
 

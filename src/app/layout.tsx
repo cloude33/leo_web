@@ -4,7 +4,7 @@ import { AppProvider } from '@/context/AppContext';
 
 export const metadata: Metadata = {
   title: 'LEO YAPI & MİMARLIK | Urla & Acarkent Butik Mimari',
-  description: "2006'dan beri Urla ve İstanbul'da çağdaş lüks, taş dokusu ve yüksek mimari konseptler üreten butik yapı stüdyosu.",
+  description: "2004'ten beri Urla ve İstanbul'da çağdaş lüks, taş dokusu ve yüksek mimari konseptler üreten butik yapı stüdyosu.",
   icons: {
     icon: '/logo_enhanced.avif',
   },

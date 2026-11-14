@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 
@@ -13,6 +14,7 @@ interface NavbarProps {
 
 export default function Navbar({ onFilterCategory, activeCategory = 'all' }: NavbarProps) {
   const { lang, setLang, theme, toggleTheme, t } = useApp();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -25,28 +27,30 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
   }, []);
 
   const navLinks = [
-    { label: t('ANA SAYFA', 'HOME'), href: '#hero' },
-    { label: t('PROJELER', 'PROJECTS'), href: '#projects' },
-    { label: t('HAKKIMIZDA', 'ABOUT'), href: '#about' },
-    { label: t('HİZMETLER', 'SERVICES'), href: '#services' },
-    { label: t('İLETİŞİM', 'CONTACT'), href: '#contact' },
+    { label: t('ANA SAYFA', 'HOME'), href: '/' },
+    { label: t('PROJELER', 'PROJECTS'), href: '/#projects' },
+    { label: t('HAKKIMIZDA', 'ABOUT'), href: '/hakkimizda' },
+    { label: t('HİZMETLER', 'SERVICES'), href: '/hizmetler' },
+    { label: t('İLETİŞİM', 'CONTACT'), href: '/iletisim' },
   ];
+
+  const isNavSolid = scrolled || (pathname && pathname !== '/');
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
+        isNavSolid
           ? 'py-2.5 backdrop-blur-md shadow-sm border-b'
           : 'py-4 md:py-5 bg-transparent'
       }`}
       style={{
-        backgroundColor: scrolled ? 'var(--nav-bg)' : 'transparent',
-        borderColor: scrolled ? 'var(--border-color)' : 'transparent',
+        backgroundColor: isNavSolid ? 'var(--nav-bg)' : 'transparent',
+        borderColor: isNavSolid ? 'var(--border-color)' : 'transparent',
       }}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand / Logo */}
-        <Link href="#hero" className="flex items-center gap-3.5 group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
+        <Link href="/" className="flex items-center gap-3.5 group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
           <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent-gold)] bg-[#0a0a0a] flex-shrink-0">
             <Image
               src="/logo_enhanced.avif"
@@ -68,15 +72,27 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
 
         {/* Desktop Nav Links */}
         <nav className="hidden md:flex items-center gap-7 lg:gap-9">
-          {navLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-xs tracking-[0.2em] uppercase font-medium hover:text-[var(--accent-gold)] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[1px] after:bg-[var(--accent-gold)] hover:after:w-full after:transition-all after:duration-300"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navLinks.map((item) => {
+            const isActive = item.href === '/'
+              ? pathname === '/'
+              : item.href.startsWith('/#')
+                ? false
+                : pathname === item.href;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-xs tracking-[0.2em] uppercase font-medium transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:bg-[var(--accent-gold)] hover:after:w-full after:transition-all after:duration-300 ${
+                  isActive
+                    ? 'text-[var(--accent-gold)] font-semibold after:w-full'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-gold)] after:w-0'
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Quick Category Jump & Controls */}
@@ -166,16 +182,28 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
           className="md:hidden border-b px-6 py-6 flex flex-col gap-5 animate-in slide-in-from-top-4 duration-300"
           style={{ backgroundColor: 'var(--card-bg)', borderColor: 'var(--border-color)' }}
         >
-          {navLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-sm font-medium tracking-widest uppercase hover:text-[var(--accent-gold)] py-1"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navLinks.map((item) => {
+            const isActive = item.href === '/'
+              ? pathname === '/'
+              : item.href.startsWith('/#')
+                ? false
+                : pathname === item.href;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`text-sm font-medium tracking-widest uppercase py-1.5 transition-colors ${
+                  isActive
+                    ? 'text-[var(--accent-gold)] font-bold pl-2 border-l-2 border-[var(--accent-gold)]'
+                    : 'hover:text-[var(--accent-gold)]'
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
           {onFilterCategory && (
             <div className="flex items-center gap-2 pt-2 border-t border-[var(--border-color)]">
               <span className="text-xs opacity-60 font-mono">{t('FİLTRE:', 'FILTER:')}</span>
