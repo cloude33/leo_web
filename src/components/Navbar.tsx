@@ -57,10 +57,10 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
             />
           </div>
           <div className="flex flex-col items-center text-center justify-center">
-            <span className="font-serif-luxury tracking-[0.28em] text-xl md:text-2xl font-bold uppercase transition-colors group-hover:text-[var(--accent-gold)] leading-none mb-1 text-center pl-1">
+            <span className="font-asteria tracking-[0.28em] text-xl md:text-2xl font-bold uppercase transition-colors group-hover:text-[var(--accent-gold)] leading-none mb-1 text-center pl-1">
               LEO
             </span>
-            <span className="text-[10px] md:text-[11px] tracking-[0.24em] uppercase font-mono font-semibold text-[var(--text-primary)]/85 group-hover:text-[var(--text-primary)] transition-colors text-center whitespace-nowrap">
+            <span className="text-[10px] md:text-[11px] tracking-[0.24em] uppercase font-asteria font-bold text-[var(--text-primary)]/85 group-hover:text-[var(--text-primary)] transition-colors text-center whitespace-nowrap">
               {t('MİMARLIK & YAPI', 'ARCHITECTURE & DESIGN')}
             </span>
           </div>

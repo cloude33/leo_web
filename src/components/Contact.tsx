@@ -4,6 +4,21 @@ import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
 import { MapPin, Phone, Mail, Clock, Send, MessageSquare, CheckCircle } from 'lucide-react';
 
+const InstagramIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
+
+const YoutubeIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+    <polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/>
+  </svg>
+);
+
 export default function Contact() {
   const { t } = useApp();
   const [submitted, setSubmitted] = useState(false);
@@ -52,53 +67,127 @@ export default function Contact() {
               </p>
 
               {/* Office Details */}
-              <div className="flex flex-col gap-6 font-mono text-xs">
+              <div className="flex flex-col gap-5 font-mono text-xs">
                 {/* Urla Office */}
                 <div className="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]/50">
-                  <span className="text-[var(--accent-gold)] font-semibold tracking-wider block mb-2">
-                    URLA TASARIM STÜDYOSU
-                  </span>
-                  <p className="text-[var(--text-muted)] leading-relaxed mb-2">
-                    Kuşçular / Özbek Mevkii, Urla — İzmir
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[var(--accent-gold)] font-semibold tracking-wider block">
+                      URLA, İZMİR ŞUBESİ
+                    </span>
+                    <span className="opacity-70 flex items-center gap-1.5 text-[11px]">
+                      <Clock size={12} /> Pzt - Cmt: 09:00 - 18:30
+                    </span>
+                  </div>
+                  <p className="text-[var(--text-muted)] leading-relaxed">
+                    Yelaltı mh. Nur Dikmen CD. No16/1A, Kat 1, Leo Mimarlık Yapı <br />
+                    <strong className="text-[var(--text-primary)]">Urla / İzmir</strong>
                   </p>
-                  <span className="opacity-70 flex items-center gap-1.5">
-                    <Clock size={12} /> Pzt - Cmt: 09:00 - 18:30
-                  </span>
                 </div>
 
                 {/* Acarkent & Istanbul Office */}
                 <div className="p-5 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]/50">
-                  <span className="text-[var(--accent-gold)] font-semibold tracking-wider block mb-2">
-                    İSTANBUL & ACARKENT TEMSİLCİLİĞİ
-                  </span>
-                  <p className="text-[var(--text-muted)] leading-relaxed mb-2">
-                    Acarkent, Beykoz — İstanbul
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[var(--accent-gold)] font-semibold tracking-wider block">
+                      ACARKENT, İSTANBUL ŞUBESİ
+                    </span>
+                    <span className="opacity-70 flex items-center gap-1.5 text-[11px]">
+                      <Clock size={12} /> Randevu ile kabul
+                    </span>
+                  </div>
+                  <p className="text-[var(--text-muted)] leading-relaxed">
+                    Acarlar mahallesi Acarkent Sitesi 3. Cadde Çıra sokak, Leo Mimarlık Yapı <br />
+                    <strong className="text-[var(--text-primary)]">Beykoz / İstanbul</strong>
                   </p>
-                  <span className="opacity-70 flex items-center gap-1.5">
-                    <Clock size={12} /> Randevu ile özel kabul
-                  </span>
                 </div>
 
-                {/* Direct Line & WhatsApp */}
-                <div className="pt-2 flex flex-col gap-3">
+                {/* Direct Line & Contact Numbers */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                   <a
-                    href="tel:+905320000000"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                    href="tel:+905326005555"
+                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
                   >
-                    <div className="p-2.5 rounded-full bg-[var(--border-color)]/30 text-[var(--accent-gold)]">
+                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
                       <Phone size={14} />
                     </div>
-                    <span>+90 (532) 000 00 00</span>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">İletişim & WhatsApp</span>
+                      <span className="font-semibold text-xs">0532 600 5555</span>
+                    </div>
                   </a>
 
                   <a
-                    href="mailto:info@leoyapi.com"
-                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                    href="tel:+905414791555"
+                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
                   >
-                    <div className="p-2.5 rounded-full bg-[var(--border-color)]/30 text-[var(--accent-gold)]">
+                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
+                      <Phone size={14} />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Doğrudan Hat</span>
+                      <span className="font-semibold text-xs">0541 479 1555</span>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Direct Emails */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href="mailto:ersina@leoyapi.com"
+                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
+                  >
+                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
                       <Mail size={14} />
                     </div>
-                    <span>info@leoyapi.com</span>
+                    <div className="flex flex-col truncate">
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Ersin A.</span>
+                      <span className="text-xs truncate font-medium">ersina@leoyapi.com</span>
+                    </div>
+                  </a>
+
+                  <a
+                    href="mailto:can@leoyapi.com"
+                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30"
+                  >
+                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]">
+                      <Mail size={14} />
+                    </div>
+                    <div className="flex flex-col truncate">
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Can B.</span>
+                      <span className="text-xs truncate font-medium">can@leoyapi.com</span>
+                    </div>
+                  </a>
+                </div>
+
+                {/* Social Networks: Instagram & YouTube */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href="https://instagram.com/leoyapi_mimarlik"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30 group"
+                  >
+                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] group-hover:scale-110 transition-transform">
+                      <InstagramIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="flex flex-col truncate">
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">Instagram</span>
+                      <span className="text-xs truncate font-medium">@leoyapi_mimarlik</span>
+                    </div>
+                  </a>
+
+                  <a
+                    href="https://youtube.com/@leomimarlikyapi?si=LWk9eWyRWRRl4afu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors p-3 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)]/30 group"
+                  >
+                    <div className="p-2 rounded-full bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] group-hover:scale-110 transition-transform">
+                      <YoutubeIcon className="w-3.5 h-3.5" />
+                    </div>
+                    <div className="flex flex-col truncate">
+                      <span className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider">YouTube Kanalı</span>
+                      <span className="text-xs truncate font-medium">@leomimarlikyapi</span>
+                    </div>
                   </a>
                 </div>
               </div>
@@ -107,13 +196,13 @@ export default function Contact() {
             {/* Direct WhatsApp VIP Button */}
             <div className="mt-8 pt-6 border-t border-[var(--border-color)]">
               <a
-                href="https://wa.me/905320000000?text=Merhaba,%20Leo%20Yapı%20projeleri%20ve%20mimari%20danışmanlık%20hakkında%20bilgi%20almak%20istiyorum."
+                href="https://wa.me/905326005555?text=Merhaba,%20Leo%20Mimarlık%20Yapı%20projeleri%20ve%20mimari%20danışmanlık%20hakkında%20bilgi%20almak%20istiyorum."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-full bg-[#25D366] text-white font-mono text-xs tracking-wider uppercase hover:opacity-90 transition-opacity shadow-sm"
               >
                 <MessageSquare size={16} />
-                {t('WHATSAPP VIP DANIŞMA HATTI', 'DIRECT WHATSAPP VIP CONCIERGE')}
+                {t('WHATSAPP VIP DANIŞMA HATTI (0532 600 5555)', 'DIRECT WHATSAPP VIP CONCIERGE')}
               </a>
             </div>
           </div>

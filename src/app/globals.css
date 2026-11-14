@@ -1,4 +1,16 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap');
+
+@font-face {
+  font-family: 'Asteria';
+  src: local('Asteria Bold'), local('Asteria-Bold'), local('Asteria'),
+       url('/fonts/Asteria-Bold.woff2') format('woff2'),
+       url('/fonts/Asteria-Bold.otf') format('opentype'),
+       url('/fonts/Asteria-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @layer base {
   :root {
@@ -39,6 +51,11 @@ body {
 /* Custom editorial styles */
 .font-serif-luxury {
   font-family: var(--font-serif);
+}
+
+.font-asteria {
+  font-family: 'Asteria', 'Asteria Bold', 'Cinzel', 'Playfair Display', Georgia, serif;
+  font-weight: 700;
 }
 
 .architectural-grid {

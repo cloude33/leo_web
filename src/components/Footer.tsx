@@ -4,7 +4,22 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
-import { ArrowUp, Globe } from 'lucide-react';
+import { ArrowUp, Phone, Mail } from 'lucide-react';
+
+const InstagramIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+  </svg>
+);
+
+const YoutubeIcon = ({ className = "w-4 h-4" }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/>
+    <polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/>
+  </svg>
+);
 
 export default function Footer() {
   const { t } = useApp();
@@ -34,10 +49,10 @@ export default function Footer() {
                 />
               </div>
               <div className="flex flex-col items-center text-center justify-center">
-                <span className="font-serif-luxury text-2xl font-bold tracking-[0.28em] uppercase block leading-none mb-1 pl-1 text-[var(--text-primary)]">
+                <span className="font-asteria text-2xl font-bold tracking-[0.28em] uppercase block leading-none mb-1 pl-1 text-[var(--text-primary)]">
                   LEO
                 </span>
-                <span className="text-[10px] sm:text-[10.5px] font-mono tracking-[0.24em] font-semibold uppercase block text-[var(--text-primary)]/85 whitespace-nowrap">
+                <span className="text-[10px] sm:text-[10.5px] font-asteria tracking-[0.24em] font-bold uppercase block text-[var(--text-primary)]/85 whitespace-nowrap">
                   MİMARLIK & YAPI
                 </span>
               </div>
@@ -74,17 +89,28 @@ export default function Footer() {
 
           <div className="lg:col-span-4 flex flex-col gap-3 font-mono text-xs">
             <span className="text-[var(--accent-gold)] font-semibold tracking-widest uppercase mb-1">
-              {t('OFİSLER & TEMSİLCİLİK', 'OFFICES & ATELIER')}
+              {t('OFİSLER & İLETİŞİM', 'OFFICES & CONTACT')}
             </span>
-            <p className="text-[var(--text-muted)]">
-              <strong className="text-[var(--text-primary)]">Urla:</strong> Kuşçular / Özbek Mevkii, Urla — İzmir
+            <p className="text-[var(--text-muted)] leading-relaxed">
+              <strong className="text-[var(--text-primary)]">Urla, İzmir:</strong> Yelaltı mh. Nur Dikmen CD. No16/1A, Kat 1, Urla / İzmir
             </p>
-            <p className="text-[var(--text-muted)]">
-              <strong className="text-[var(--text-primary)]">İstanbul:</strong> Acarkent Mah. Beykoz — İstanbul
+            <p className="text-[var(--text-muted)] leading-relaxed">
+              <strong className="text-[var(--text-primary)]">Acarkent, İstanbul:</strong> Acarlar mah. Acarkent Sit. 3. Cad. Çıra sokak, Beykoz / İstanbul
             </p>
-            <p className="text-[var(--text-muted)]">
-              <strong className="text-[var(--text-primary)]">E-Posta:</strong> info@leoyapi.com
-            </p>
+            <div className="pt-1 flex flex-col gap-1 text-[var(--text-muted)]">
+              <div>
+                <strong className="text-[var(--text-primary)]">Tel:</strong>{' '}
+                <a href="tel:+905326005555" className="hover:text-[var(--accent-gold)] transition-colors">0532 600 5555</a>
+                {' / '}
+                <a href="tel:+905414791555" className="hover:text-[var(--accent-gold)] transition-colors">0541 479 1555</a>
+              </div>
+              <div>
+                <strong className="text-[var(--text-primary)]">E-Posta:</strong>{' '}
+                <a href="mailto:ersina@leoyapi.com" className="hover:text-[var(--accent-gold)] transition-colors">ersina@leoyapi.com</a>
+                {', '}
+                <a href="mailto:can@leoyapi.com" className="hover:text-[var(--accent-gold)] transition-colors">can@leoyapi.com</a>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -97,14 +123,23 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-6">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-gold)] transition-colors">
-              Instagram
+            <a
+              href="https://instagram.com/leoyapi_mimarlik"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-[var(--accent-gold)] transition-colors"
+            >
+              <InstagramIcon className="w-3.5 h-3.5" />
+              <span>@leoyapi_mimarlik</span>
             </a>
-            <a href="https://behance.net" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-gold)] transition-colors">
-              Behance
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent-gold)] transition-colors">
-              LinkedIn
+            <a
+              href="https://youtube.com/@leomimarlikyapi?si=LWk9eWyRWRRl4afu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 hover:text-[var(--accent-gold)] transition-colors"
+            >
+              <YoutubeIcon className="w-3.5 h-3.5" />
+              <span>YouTube</span>
             </a>
           </div>
 
