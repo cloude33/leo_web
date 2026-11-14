@@ -40,12 +40,16 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="flex items-center gap-3.5">
-              <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 bg-[#0a0a0a] shadow-sm flex-shrink-0">
+              <div
+                className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 bg-[#0a0a0a] shadow-sm flex-shrink-0"
+                style={{ width: '48px', height: '48px', minWidth: '48px', minHeight: '48px' }}
+              >
                 <Image
                   src="/logo_enhanced.avif"
                   alt="Leo Logo"
-                  fill
-                  className="object-cover scale-100"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-cover scale-100 rounded-full"
                 />
               </div>
               <div className="flex flex-col items-center text-center justify-center">

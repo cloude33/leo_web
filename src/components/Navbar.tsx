@@ -51,12 +51,16 @@ export default function Navbar({ onFilterCategory, activeCategory = 'all' }: Nav
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Brand / Logo */}
         <Link href="/" className="flex items-center gap-3.5 group mr-6 md:mr-10 lg:mr-14 flex-shrink-0">
-          <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent-gold)] bg-[#0a0a0a] flex-shrink-0">
+          <div
+            className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2 border-[var(--accent-gold)]/80 shadow-md transition-all duration-300 group-hover:scale-105 group-hover:border-[var(--accent-gold)] bg-[#0a0a0a] flex-shrink-0"
+            style={{ width: '56px', height: '56px', minWidth: '56px', minHeight: '56px' }}
+          >
             <Image
               src="/logo_enhanced.avif"
               alt="LEO Mimarlık Logo"
-              fill
-              className="object-cover scale-100"
+              width={56}
+              height={56}
+              className="w-full h-full object-cover scale-100 rounded-full"
               priority
             />
           </div>
