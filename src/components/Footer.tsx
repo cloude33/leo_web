@@ -66,6 +66,9 @@ export default function Footer() {
             <Link href="/#projects" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
               {t('Mimari Projeler Arşivi', 'Architectural Projects')}
             </Link>
+            <Link href="/insaat-simulasyonu" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
+              {t('3D İnşaat & Kesit Filmi', '3D Construction Film')}
+            </Link>
             <Link href="/hakkimizda" className="text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors">
               {t('Hakkımızda & Felsefemiz', 'About & Philosophy')}
             </Link>

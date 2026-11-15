@@ -24,6 +24,7 @@ export default function Navbar() {
   const navLinks = [
     { label: t('ANA SAYFA', 'HOME'), href: '/' },
     { label: t('PROJELER', 'PROJECTS'), href: '/#projects' },
+    { label: t('3D SİMÜLASYON', '3D SIMULATION'), href: '/insaat-simulasyonu' },
     { label: t('HAKKIMIZDA', 'ABOUT'), href: '/hakkimizda' },
     { label: t('HİZMETLER', 'SERVICES'), href: '/hizmetler' },
     { label: t('İLETİŞİM', 'CONTACT'), href: '/iletisim' },
