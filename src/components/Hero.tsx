@@ -65,8 +65,6 @@ export default function Hero() {
             priority
             className="object-cover object-center"
           />
-          {/* Subtle cinematic vignette gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/30 pointer-events-none" />
         </motion.div>
       </AnimatePresence>
 
@@ -84,11 +82,11 @@ export default function Hero() {
             </button>
 
             {/* Slide Index & Progress Bar */}
-            <div className="flex items-center gap-4 text-xs font-mono text-white/90">
+            <div className="flex items-center gap-4 text-xs font-mono text-white/90 drop-shadow-md">
               <span className="tracking-widest font-medium">
                 {String(current + 1).padStart(2, '0')} / {String(slides.length).padStart(2, '0')}
               </span>
-              <div className="w-24 h-[1.5px] bg-white/30 relative overflow-hidden">
+              <div className="w-24 h-[1.5px] bg-white/40 relative overflow-hidden rounded-full shadow-sm">
                 <div
                   className="h-full bg-[#D2B07E] transition-all duration-500"
                   style={{ width: `${((current + 1) / slides.length) * 100}%` }}
@@ -102,14 +100,14 @@ export default function Hero() {
             <button
               onClick={prevSlide}
               aria-label="Previous Slide"
-              className="w-10 h-10 md:w-11 md:h-11 rounded-full border border-white/60 hover:border-white text-white/90 hover:text-white hover:bg-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/40 backdrop-blur-sm border border-white/60 hover:border-white text-white/90 hover:text-white hover:bg-black/60 flex items-center justify-center transition-all duration-300 cursor-pointer shadow-md"
             >
               <ArrowLeft size={16} />
             </button>
             <button
               onClick={nextSlide}
               aria-label="Next Slide"
-              className="w-10 h-10 md:w-11 md:h-11 rounded-full border border-white/60 hover:border-white text-white/90 hover:text-white hover:bg-white/10 flex items-center justify-center transition-all duration-300 cursor-pointer"
+              className="w-10 h-10 md:w-11 md:h-11 rounded-full bg-black/40 backdrop-blur-sm border border-white/60 hover:border-white text-white/90 hover:text-white hover:bg-black/60 flex items-center justify-center transition-all duration-300 cursor-pointer shadow-md"
             >
               <ArrowRight size={16} />
             </button>
