@@ -41,8 +41,8 @@ export default function About() {
           <div className="lg:col-span-5 relative">
             <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-[var(--border-color)] shadow-xl">
               <Image
-                src="/projects/urla-kuscular-12-tas-ev/img_1.avif"
-                alt="Urla Kuşçular Taş Ev Detayı"
+                src="/projects/gaia-vadi-4/img_2.avif"
+                alt="Urla Gaia Vadi Taş Ev Detayı"
                 fill
                 className="object-cover"
               />
