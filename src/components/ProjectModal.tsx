@@ -171,17 +171,29 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Main Stage Image (Clicking opens fullscreen lightbox) */}
             <div
               onClick={() => setIsFullscreen(true)}
-              className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-black shadow-md select-none group border border-[var(--border-color)] cursor-zoom-in"
+              className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#0a0a0a] shadow-lg select-none group border border-[var(--border-color)] cursor-zoom-in flex items-center justify-center"
               title={t('Büyük boyutta incelemek için tıklayın', 'Click to view fullscreen')}
             >
+              {/* Subtle ambient blurred background matching the photo */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <Image
+                  src={currentImage}
+                  alt=""
+                  fill
+                  className="object-cover blur-2xl opacity-20 scale-110"
+                  aria-hidden="true"
+                />
+                <div className="absolute inset-0 bg-black/30" />
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentImage}
                   initial={{ opacity: 0.8 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0.8 }}
-                  transition={{ duration: 0.3 }}
-                  className="relative w-full h-full"
+                  transition={{ duration: 0.25 }}
+                  className="relative w-full h-full flex items-center justify-center z-10"
                 >
                   <Image
                     src={currentImage}
@@ -189,7 +201,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     fill
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     priority
-                    className="object-cover"
+                    className="object-contain select-none"
                   />
                 </motion.div>
               </AnimatePresence>
@@ -364,15 +376,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               setActiveImageIndex(images.length - 1);
               setIsFullscreen(true);
             }}
-            className="relative aspect-[21/9] sm:aspect-[24/9] w-full rounded-2xl overflow-hidden mt-12 shadow-md border border-[var(--border-color)] cursor-zoom-in"
+            className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden mt-12 shadow-lg border border-[var(--border-color)] cursor-zoom-in bg-[#0a0a0a] flex items-center justify-center"
             title={t('Büyük boyutta incelemek için tıklayın', 'Click to view fullscreen')}
           >
+            {/* Ambient blurred backdrop */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <Image
+                src={bottomImage}
+                alt=""
+                fill
+                className="object-cover blur-2xl opacity-20 scale-110"
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 bg-black/30" />
+            </div>
+
             <Image
               src={bottomImage}
               alt="Project Detail Showcase"
               fill
               sizes="100vw"
-              className="object-cover"
+              className="object-contain relative z-10 select-none"
             />
           </div>
         )}
