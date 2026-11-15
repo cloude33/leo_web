@@ -9,22 +9,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Hero() {
   const { t } = useApp();
 
-  // Genuine high-resolution architectural portfolio photos (clean, no burned-in text)
+  // Urla Gaia Çiftlik Evleri 4 projesinden seçilen gerçek mimari görseller
   const slides = [
     {
-      id: 'gaia-vadi',
-      title: 'Gaia Vadi Çiftlik Evleri',
-      src: '/projects/gaia-vadi-1/img_1.avif',
+      id: 'gaia-vadi-4-slide-1',
+      title: 'Urla Gaia Çiftlik Evleri 4',
+      src: '/projects/gaia-vadi-4/img_3.avif',
     },
     {
-      id: 'acarkent-penthouse',
-      title: 'Acarkent Acar Verde Penthouse',
-      src: '/projects/acarkent-penthouse/img_1.avif',
+      id: 'gaia-vadi-4-slide-2',
+      title: 'Urla Gaia Çiftlik Evleri 4',
+      src: '/projects/gaia-vadi-4/img_8.avif',
     },
     {
-      id: 'gaia-vadi-tas',
-      title: 'Urla Gaia Taş Konutları',
-      src: '/projects/gaia-vadi-1/img_10.avif',
+      id: 'gaia-vadi-4-slide-3',
+      title: 'Urla Gaia Çiftlik Evleri 4',
+      src: '/projects/gaia-vadi-4/img_5.avif',
     },
   ];
 
