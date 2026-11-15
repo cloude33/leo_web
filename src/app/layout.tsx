@@ -6,7 +6,12 @@ export const metadata: Metadata = {
   title: 'LEO YAPI & MİMARLIK | Urla & Acarkent Butik Mimari',
   description: "2004'ten beri Urla ve İstanbul'da çağdaş lüks, taş dokusu ve yüksek mimari konseptler üreten butik yapı stüdyosu.",
   icons: {
-    icon: '/logo.avif',
+    icon: [
+      { url: '/logo1.avif', type: 'image/avif' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/logo1.avif',
+    shortcut: '/logo1.avif',
   },
 };
 
@@ -18,6 +23,9 @@ export default function RootLayout({
   return (
     <html lang="tr" className="dark" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/logo1.avif" type="image/avif" />
+        <link rel="shortcut icon" href="/logo1.avif" />
+        <link rel="apple-touch-icon" href="/logo1.avif" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
