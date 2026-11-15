@@ -29,10 +29,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  const images = project.images && project.images.length > 0 ? project.images : [project.coverImage];
+
+  const prevImage = () => {
+    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const nextImage = () => {
+    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
   // Keyboard navigation & escape listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        if (isFullscreen) {
+          setIsFullscreen(false);
+        } else {
+          onClose();
+        }
+      }
       if (e.key === 'ArrowLeft') prevImage();
       if (e.key === 'ArrowRight') nextImage();
     };
@@ -44,17 +60,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'auto';
     };
-  }, [onClose, project.images.length]);
-
-  const images = project.images && project.images.length > 0 ? project.images : [project.coverImage];
-
-  const prevImage = () => {
-    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const nextImage = () => {
-    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  };
+  }, [onClose, images.length, isFullscreen]);
 
   // 5 standard services matching client mockup 2
   const servicesList = [
@@ -162,8 +168,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           {/* Left Column (8 cols): Big Image + Thumbnails Strip */}
           <div className="lg:col-span-8 flex flex-col">
-            {/* Main Stage Image */}
-            <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-black shadow-md select-none group border border-[var(--border-color)]">
+            {/* Main Stage Image (Clicking opens fullscreen lightbox) */}
+            <div
+              onClick={() => setIsFullscreen(true)}
+              className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-black shadow-md select-none group border border-[var(--border-color)] cursor-zoom-in"
+              title={t('Büyük boyutta incelemek için tıklayın', 'Click to view fullscreen')}
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentImage}
@@ -186,18 +196,24 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
               {/* Inside Left Arrow Button */}
               <button
-                onClick={prevImage}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImage();
+                }}
                 aria-label="Previous Image"
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md z-10"
               >
                 <ArrowLeft size={18} />
               </button>
 
               {/* Inside Right Arrow Button */}
               <button
-                onClick={nextImage}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImage();
+                }}
                 aria-label="Next Image"
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md z-10"
               >
                 <ArrowRight size={18} />
               </button>
@@ -217,11 +233,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
               {/* Bottom Right Fullscreen Toggle */}
               <button
-                onClick={() => setIsFullscreen(!isFullscreen)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsFullscreen(true);
+                }}
                 aria-label="Fullscreen"
                 className="absolute bottom-4 right-5 p-2 rounded-lg bg-black/60 hover:bg-black/80 text-white/90 backdrop-blur-sm transition-colors cursor-pointer z-10"
               >
-                {isFullscreen ? <Minimize2 size={16} /> : <Maximize2 size={16} />}
+                <Maximize2 size={16} />
               </button>
             </div>
 
@@ -340,7 +359,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* 5. Bottom Architectural Eye-Level Photo (Mockup 2 Continuation) */}
         {bottomImage && (
-          <div className="relative aspect-[21/9] sm:aspect-[24/9] w-full rounded-2xl overflow-hidden mt-12 shadow-md border border-[var(--border-color)]">
+          <div
+            onClick={() => {
+              setActiveImageIndex(images.length - 1);
+              setIsFullscreen(true);
+            }}
+            className="relative aspect-[21/9] sm:aspect-[24/9] w-full rounded-2xl overflow-hidden mt-12 shadow-md border border-[var(--border-color)] cursor-zoom-in"
+            title={t('Büyük boyutta incelemek için tıklayın', 'Click to view fullscreen')}
+          >
             <Image
               src={bottomImage}
               alt="Project Detail Showcase"
@@ -352,22 +378,108 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         )}
       </div>
 
-      {/* Fullscreen Lightbox Modal if triggered */}
+      {/* 6. Fullscreen Interactive Lightbox Modal */}
       {isFullscreen && (
-        <div className="fixed inset-0 z-60 bg-black/95 flex items-center justify-center p-4">
+        <div
+          className="fixed inset-0 z-60 bg-black/95 flex flex-col items-center justify-center p-4 select-none backdrop-blur-md animate-in fade-in duration-200"
+          onClick={() => setIsFullscreen(false)}
+        >
+          {/* Top Info & Close Bar */}
+          <div className="absolute top-5 left-5 md:left-8 z-30 flex items-center gap-3 md:gap-4 pointer-events-auto">
+            <span className="font-serif-luxury text-base md:text-xl text-white font-medium drop-shadow-md">
+              {project.title[lang]}
+            </span>
+            <span className="text-white/40 font-mono text-sm hidden sm:inline">|</span>
+            <div className="flex items-center gap-1.5 bg-black/60 border border-white/20 px-3 py-1 rounded-full text-xs font-mono text-white/90 backdrop-blur-md">
+              <span className="text-[#D2B07E] font-bold">{activeImageIndex + 1}</span>
+              <span className="opacity-50">/</span>
+              <span>{images.length}</span>
+            </div>
+          </div>
+
           <button
             onClick={() => setIsFullscreen(false)}
-            className="absolute top-6 right-6 text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            aria-label="Close Lightbox"
+            className="absolute top-5 right-5 md:right-8 z-30 w-11 h-11 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-white text-white flex items-center justify-center transition-all cursor-pointer backdrop-blur-md shadow-lg pointer-events-auto"
           >
-            <X size={24} />
+            <X size={20} />
           </button>
-          <div className="relative w-full max-w-6xl aspect-[16/10]">
-            <Image
-              src={currentImage}
-              alt="Fullscreen Preview"
-              fill
-              className="object-contain"
-            />
+
+          {/* Left Arrow Navigation Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImage();
+            }}
+            aria-label="Previous Photo"
+            className="absolute left-3 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-[#D2B07E] text-white hover:text-[#D2B07E] flex items-center justify-center transition-all cursor-pointer shadow-2xl group pointer-events-auto"
+          >
+            <ArrowLeft size={24} className="group-hover:-translate-x-0.5 transition-transform" />
+          </button>
+
+          {/* Right Arrow Navigation Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImage();
+            }}
+            aria-label="Next Photo"
+            className="absolute right-3 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-[#D2B07E] text-white hover:text-[#D2B07E] flex items-center justify-center transition-all cursor-pointer shadow-2xl group pointer-events-auto"
+          >
+            <ArrowRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
+          </button>
+
+          {/* Main Fullscreen Image Container */}
+          <div
+            className="relative w-full h-full max-w-6xl max-h-[72vh] md:max-h-[76vh] flex items-center justify-center px-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentImage}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full h-full flex items-center justify-center"
+              >
+                <Image
+                  src={currentImage}
+                  alt={`${project.title[lang]} - Fotoğraf ${activeImageIndex + 1}`}
+                  fill
+                  priority
+                  className="object-contain select-none"
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Bottom Thumbnails Strip for Quick Jump */}
+          <div className="absolute bottom-4 md:bottom-6 left-0 right-0 z-30 flex justify-center px-4 pointer-events-none">
+            <div className="flex items-center gap-2 md:gap-3 p-2 rounded-2xl bg-black/70 backdrop-blur-md border border-white/15 max-w-full overflow-x-auto pointer-events-auto shadow-2xl">
+              {images.map((img, idx) => (
+                <button
+                  key={idx}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveImageIndex(idx);
+                  }}
+                  className={`relative h-12 md:h-14 aspect-[16/10] rounded-lg overflow-hidden flex-shrink-0 transition-all border-2 cursor-pointer ${
+                    activeImageIndex === idx
+                      ? 'border-[#D2B07E] scale-105 ring-2 ring-[#D2B07E]/40 opacity-100 shadow-md'
+                      : 'border-transparent opacity-50 hover:opacity-100 hover:border-white/40'
+                  }`}
+                >
+                  <Image
+                    src={img}
+                    alt={`Küçük Resim ${idx + 1}`}
+                    fill
+                    sizes="90px"
+                    className="object-cover"
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       )}
