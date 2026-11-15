@@ -346,8 +346,8 @@ export default function Contact() {
                     <Send size={15} />
                     <span>
                       {isSubmitting
-                        ? t('İLETİLİYOR...', 'TRANSMITTING...')
-                        : t('ERSİN ASLAN\'A İLET (ersina@leoyapi.com)', 'TRANSMIT TO ERSIN ASLAN')}
+                        ? t('GÖNDERİLİYOR...', 'SENDING...')
+                        : t('GÖNDER', 'SEND')}
                     </span>
                   </button>
                 </form>
