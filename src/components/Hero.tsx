@@ -39,7 +39,7 @@ export default function Hero() {
   };
 
   const scrollToFeatured = () => {
-    const el = document.getElementById('featured-projects');
+    const el = document.getElementById('projects') || document.getElementById('featured-projects');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }

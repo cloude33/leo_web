@@ -29,6 +29,23 @@ export default function Navbar() {
     { label: t('İLETİŞİM', 'CONTACT'), href: '/iletisim' },
   ];
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    if (href.startsWith('/#')) {
+      const targetId = href.replace('/#', '');
+      if (pathname === '/') {
+        e.preventDefault();
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          window.history.pushState(null, '', `#${targetId}`);
+        }
+      }
+    }
+  };
+
   // At the very top of homepage, navbar sits over the dark hero image
   const isOverHero = pathname === '/' && !scrolled;
 
@@ -79,6 +96,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
                 className={`text-xs tracking-[0.22em] uppercase font-mono transition-all py-1.5 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] hover:after:w-full after:transition-all after:duration-300 ${linkColor}`}
               >
                 {item.label}
@@ -170,7 +188,10 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => {
+                  handleNavClick(e, item.href);
+                  setMobileMenuOpen(false);
+                }}
                 className={`text-sm font-medium tracking-widest uppercase py-2 transition-colors ${
                   isActive
                     ? theme === 'dark'

@@ -42,13 +42,14 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
     <>
       {/* 1. ÖNE ÇIKAN PROJELER (Client Mockup 1 Exact Design) */}
       <section
-        id="featured-projects"
-        className="py-16 md:py-24 border-b transition-colors duration-300"
+        id="projects"
+        className="scroll-mt-24 py-16 md:py-24 border-b transition-colors duration-300 relative"
         style={{
           backgroundColor: 'var(--bg-section)',
           borderColor: 'var(--border-color)',
         }}
       >
+        <span id="featured-projects" className="absolute -top-24 opacity-0 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {/* Header: Title + Gold Rule + Tüm Projeler link */}
           <div className="flex items-center justify-between mb-12">
