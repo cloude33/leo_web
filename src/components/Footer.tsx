@@ -135,7 +135,7 @@ export default function Footer() {
 
           <button
             onClick={scrollToTop}
-            className="flex items-center gap-2 hover:text-[var(--accent-gold)] transition-colors"
+            className="flex items-center gap-2 hover:text-[var(--accent-gold)] active:scale-95 transition-all cursor-pointer"
           >
             <span>{t('YUKARI DÖN', 'BACK TO TOP')}</span>
             <ArrowUp size={14} />

@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useApp } from '@/context/AppContext';
-import { Award, Compass, Sparkles, Feather } from 'lucide-react';
+import { Award, Compass, ShieldCheck, Feather } from 'lucide-react';
 
 export default function About() {
   const { lang, t } = useApp();
@@ -122,7 +122,7 @@ export default function About() {
               </div>
 
               <div>
-                <div className="text-[var(--accent-gold)] mb-2"><Sparkles size={20} /></div>
+                <div className="text-[var(--accent-gold)] mb-2"><ShieldCheck size={20} /></div>
                 <h4 className="font-serif-luxury text-base font-semibold mb-1">
                   {t('Anahtar Teslim Güvence', 'Turnkey Precision')}
                 </h4>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useApp } from '@/context/AppContext';
-import { Compass, PenTool, Home, Sparkles, Building2, Eye } from 'lucide-react';
+import { Compass, PenTool, Home, Landmark, Building2, Eye } from 'lucide-react';
 
 export default function Services() {
   const { t } = useApp();
@@ -54,7 +54,7 @@ export default function Services() {
       )
     },
     {
-      icon: <Sparkles size={28} className="text-[var(--accent-gold)]" />,
+      icon: <Landmark size={28} className="text-[var(--accent-gold)]" />,
       num: '06',
       title: t('Urla Taş Ev Restorasyon & Eko-Çiftlik', 'Urla Stone Restoration & Eco-Estates'),
       desc: t(

@@ -75,18 +75,22 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
             {featuredProjects.map((project) => (
               <div
                 key={project.id}
+                data-testid={`featured-card-${project.id}`}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer flex flex-col"
+                className="group cursor-pointer flex flex-col transition-transform duration-300 hover:-translate-y-1"
               >
                 {/* Card Image */}
-                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-800 shadow-sm border border-[var(--border-color)]">
+                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-neutral-900 shadow-sm border border-[var(--border-color)]">
                   <Image
                     src={project.coverImage}
                     alt={project.title[lang]}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    className="object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                   />
+                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-mono tracking-widest text-[#D2B07E] uppercase border border-white/10">
+                    {project.category === 'urla' ? 'URLA' : 'ACARKENT'}
+                  </div>
                 </div>
 
                 {/* Card Title & Arrow */}
@@ -94,14 +98,14 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                   <h3 className="font-serif-luxury text-xl sm:text-2xl text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors leading-snug">
                     {project.title[lang]}
                   </h3>
-                  <span className="text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] group-hover:translate-x-1 transition-all text-xl font-light">
+                  <span className="text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] group-hover:translate-x-1.5 transition-transform duration-200 text-xl font-light">
                     →
                   </span>
                 </div>
 
                 {/* Card Subtitle */}
                 <p className="font-mono text-xs tracking-[0.2em] text-[var(--text-muted)] uppercase mt-1">
-                  {project.category === 'urla' ? 'URLA' : 'ACARKENT'} | {project.year}
+                  {project.location[lang]} • {project.year} • {project.area}
                 </p>
               </div>
             ))}
@@ -184,9 +188,9 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                       alt={project.title[lang]}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                      className="object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
                     />
-                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-mono tracking-wider text-white uppercase">
+                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-mono tracking-widest text-[#D2B07E] uppercase border border-white/10">
                       {project.category} • {project.year}
                     </div>
                   </div>

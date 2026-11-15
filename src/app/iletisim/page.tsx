@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { useApp } from '@/context/AppContext';
-import { Sparkles, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 export default function IletisimPage() {
   const { t } = useApp();
@@ -30,8 +30,8 @@ export default function IletisimPage() {
           </div>
 
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--accent-gold)]/40 bg-[var(--card-bg)]/80 text-[11px] font-mono tracking-[0.25em] text-[var(--accent-gold)] uppercase mb-6">
-              <Sparkles size={13} />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent-gold)]/40 bg-[var(--card-bg)]/80 text-[11px] font-mono tracking-[0.25em] text-[var(--accent-gold)] uppercase mb-6">
+              <MapPin size={13} />
               <span>{t("URLA & ACARKENT OFİSLERİMİZ", "URLA & ACARKENT STUDIOS")}</span>
             </div>
 

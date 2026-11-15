@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Services from '@/components/Services';
 import Footer from '@/components/Footer';
 import { useApp } from '@/context/AppContext';
-import { ArrowRight, Compass, ShieldCheck, Hammer, Sparkles } from 'lucide-react';
+import { ArrowRight, Compass, ShieldCheck, Hammer } from 'lucide-react';
 
 export default function HizmetlerPage() {
   const { t } = useApp();
@@ -53,8 +53,8 @@ export default function HizmetlerPage() {
           </div>
 
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-[var(--accent-gold)]/40 bg-[var(--card-bg)]/80 text-[11px] font-mono tracking-[0.25em] text-[var(--accent-gold)] uppercase mb-6">
-              <Sparkles size={13} />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent-gold)]/40 bg-[var(--card-bg)]/80 text-[11px] font-mono tracking-[0.25em] text-[var(--accent-gold)] uppercase mb-6">
+              <Compass size={13} />
               <span>{t("BUTİK MİMARLIK & İNŞAAT DİSİPLİNLERİ", "BESPOKE ARCHITECTURE & BUILD DISCIPLINES")}</span>
             </div>
 

@@ -67,3 +67,15 @@ body {
   font-family: 'Aviano Serif', 'Aviano Serif W00 Bold', 'Cinzel', 'Playfair Display', Georgia, serif;
   font-weight: 700;
 }
+
+/* Architectural subtle background grid */
+.architectural-grid {
+  background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Accessibility & Focus-visible ring */
+:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
