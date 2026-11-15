@@ -145,7 +145,6 @@ export const projectsData: Project[] = [
     coverImage: '/projects/gaia-vadi-1/img_1.avif',
     images: [
       '/projects/gaia-vadi-1/img_1.avif',
-      '/projects/gaia-vadi-1/img_6.avif',
       '/projects/gaia-vadi-1/img_2.avif',
       '/projects/gaia-vadi-1/img_3.avif',
       '/projects/gaia-vadi-1/img_4.avif',
