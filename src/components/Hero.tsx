@@ -39,13 +39,6 @@ export default function Hero() {
             {t('Projenizi çiziyor, yapınızı inşa ediyoruz.', 'We design your project and build what we draw.')}
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
-            {t(
-              'Projelendirme, inşaat ve uygulama tek ekipte. Ruhsat çiziminden son dokunuşa kadar her aşamayı birlikte yürütüyoruz.',
-              'Design, construction and fit-out, together under one roof. We guide each stage from permit drawings to the final detail.'
-            )}
-          </p>
-
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <button
               type="button"
