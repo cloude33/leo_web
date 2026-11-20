@@ -54,21 +54,6 @@ export default function HizmetlerPage() {
       {/* Services Grid Component */}
       <Services showIntro={false} />
 
-      <section className="py-16 border-t" style={{ borderColor: 'var(--border-color)', backgroundColor: 'var(--card-bg)' }}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <h2 className="font-serif-luxury text-3xl sm:text-4xl tracking-tight max-w-xl">
-            {t('Tamamlanan işler bu üç aşamanın kaydıdır.', 'The finished work is the record of these three stages.')}
-          </h2>
-          <Link
-            href="/#projects"
-            className="inline-flex items-center justify-center gap-2 min-h-11 px-6 bg-[var(--accent-gold)] text-black font-mono text-xs tracking-[0.18em] uppercase hover:opacity-90 active:scale-[0.98] transition-all shrink-0"
-          >
-            <span>{t('Projeleri aç', 'Open the projects')}</span>
-            <ArrowRight size={15} />
-          </Link>
-        </div>
-      </section>
-
       <Footer />
     </main>
   );

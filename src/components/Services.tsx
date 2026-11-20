@@ -103,23 +103,6 @@ export default function Services({ showIntro = true }: { showIntro?: boolean }) 
             );
           })}
         </div>
-
-        <div className="mt-16 md:mt-20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-t pt-8"
-          style={{ borderColor: 'var(--border-color)' }}
-        >
-          <p className="font-serif-luxury text-2xl sm:text-3xl tracking-tight max-w-xl">
-            {t(
-              'Bir sonraki mekânı bu üç işin bir arada yürüdüğü ofiste konuşalım.',
-              'Let us talk about the next place in the office where these three trades run together.'
-            )}
-          </p>
-          <Link
-            href="/iletisim"
-            className="inline-flex items-center justify-center min-h-11 px-6 bg-[var(--accent-gold)] text-black font-mono text-xs tracking-[0.18em] uppercase hover:opacity-90 active:scale-[0.98] transition-all shrink-0"
-          >
-            {t('Görüşme ayarla', 'Arrange a meeting')}
-          </Link>
-        </div>
       </div>
     </section>
   );
