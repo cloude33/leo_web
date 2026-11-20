@@ -30,8 +30,6 @@ export default function Home() {
       {/* Cinematic Hero Showcase */}
       <Hero />
 
-      <Services />
-
       <Projects
         filterCategory={filterCategory}
         setFilterCategory={setFilterCategory}

@@ -60,7 +60,7 @@ export const projectsData: Project[] = [
       tr: 'Boğaz ve orman siluetine hakim, mermer ve pirinç detayların minimalist geometri ile buluştuğu imza penthouse projesi.',
       en: 'A signature penthouse project harmonizing panoramic vistas, monolithic stone surfaces, and refined bronze details.'
     },
-    coverImage: '/projects/acarkent-penthouse/img_2.avif',
+    coverImage: '/projects/acarkent-penthouse/img_13.avif',
     images: [
       '/projects/acarkent-penthouse/img_1.avif',
       '/projects/acarkent-penthouse/img_2.avif',
@@ -199,7 +199,7 @@ export const projectsData: Project[] = [
       en: 'An exclusive country villa set within a 3,100 m² agricultural estate, blending contemporary luxury with authentic Mediterranean nature.'
     },
     videoUrl: 'https://www.youtube.com/watch?v=OrYLcPwTOfw',
-    coverImage: '/projects/gaia-vadi-1/img_1.avif',
+    coverImage: '/projects/gaia-vadi-1/img_20.avif',
     images: [
       '/projects/gaia-vadi-1/img_1.avif',
       '/projects/gaia-vadi-1/img_2.avif',
@@ -731,4 +731,5 @@ export const projectsData: Project[] = [
     ]
   }
 ];
+
 
