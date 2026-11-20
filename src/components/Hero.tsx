@@ -45,16 +45,12 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto flex min-h-[max(640px,100svh)] max-w-7xl flex-col justify-end px-5 pb-10 pt-28 sm:px-10 sm:pb-12 sm:pt-36 md:min-h-[min(900px,100svh)] md:pb-16 lg:px-12">
         <div className="max-w-4xl hero-enter">
-          <p className="mb-4 sm:mb-5 flex items-center gap-2.5 sm:gap-3 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] sm:tracking-[0.24em] text-white/80">
+          <p className="mb-6 flex items-center gap-2.5 sm:gap-3 font-mono text-[11px] sm:text-xs uppercase tracking-[0.24em] text-white/90">
             <span className="h-px w-6 sm:w-8 bg-[#D2B07E]" />
             {t('Urla ve İstanbul’da mimarlık & yapı', 'Architecture & construction in Urla and Istanbul')}
           </p>
 
-          <h1 className="max-w-4xl font-serif-luxury text-3xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-medium leading-[1.08] sm:leading-[0.98] tracking-tight">
-            {t('Projenizi çiziyor, yapınızı inşa ediyoruz.', 'We design your project and build what we draw.')}
-          </h1>
-
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <button
               type="button"
               onClick={scrollToProjects}
