@@ -78,8 +78,8 @@ export default function About() {
 
             <h2 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl tracking-tight leading-tight">
               {t(
-                'Seri Üretime Karşı, Yılda Sadece Bir Başyapıt.',
-                'Against Mass Production: Just One Masterpiece a Year.'
+                'Çizdiğimiz projeyi kendi şantiyemizde inşa ediyoruz.',
+                'The project we draw is the project we build.'
               )}
             </h2>
 

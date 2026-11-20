@@ -23,6 +23,7 @@ export default function Contact() {
   const { t } = useApp();
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -53,17 +54,18 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      // 1. Post to internal Next.js API endpoint
-      await fetch('/api/contact', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-    } catch (err) {
-      console.warn('API submission log:', err);
+      if (!response.ok) throw new Error('Contact request failed');
+      setSubmitted(true);
+      setSubmitError(false);
+    } catch {
+      setSubmitError(true);
     } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
     }
   };
 
@@ -77,6 +79,7 @@ export default function Contact() {
       message: ''
     });
     setSubmitted(false);
+    setSubmitError(false);
   };
 
   return (
@@ -350,6 +353,17 @@ export default function Contact() {
                         : t('GÖNDER', 'SEND')}
                     </span>
                   </button>
+                  {submitError && (
+                    <div role="alert" className="p-4 border border-[var(--accent-gold)]/50 text-sm text-[var(--text-muted)] leading-relaxed">
+                      {t(
+                        'Talebiniz şu anda gönderilemedi. Bilgilerinizi e-posta uygulamanızda açıp doğrudan iletebilirsiniz.',
+                        'Your inquiry could not be sent. Open it in your email app to send it directly.'
+                      )}{' '}
+                      <a href={getMailtoUrl()} className="underline underline-offset-4 text-[var(--accent-gold)]">
+                        {t('E-posta ile gönder', 'Send by email')}
+                      </a>
+                    </div>
+                  )}
                 </form>
               )}
             </div>

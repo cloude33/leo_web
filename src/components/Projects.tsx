@@ -52,7 +52,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
         <span id="featured-projects" className="absolute -top-24 opacity-0 pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {/* Header: Title + Gold Rule + Tüm Projeler link */}
-          <div className="flex items-center justify-between mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
             <div className="flex items-center gap-4">
               <h2 className="font-serif-luxury text-3xl sm:text-4xl md:text-5xl text-[var(--text-primary)] tracking-tight font-normal">
                 {t('Öne Çıkan Projeler', 'Featured Projects')}
@@ -63,7 +63,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
             <a
               href="#all-projects"
               onClick={scrollToAll}
-              className="text-sm font-serif-luxury text-[var(--text-primary)] hover:text-[var(--accent-gold)] flex items-center gap-1.5 transition-colors cursor-pointer group"
+              className="min-h-11 text-sm font-serif-luxury text-[var(--text-primary)] hover:text-[var(--accent-gold)] flex items-center gap-1.5 transition-colors cursor-pointer group"
             >
               <span>{t('Tüm Projeler', 'All Projects')}</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -77,10 +77,19 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                 key={project.id}
                 data-testid={`featured-card-${project.id}`}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer flex flex-col transition-transform duration-300 hover:-translate-y-1"
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    setSelectedProject(project);
+                  }
+                }}
+                aria-label={`${t('Projeyi incele:', 'View project:')} ${project.title[lang]}`}
+                className="group cursor-pointer flex flex-col transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-gold)]"
               >
                 {/* Card Image */}
-                <div className="relative aspect-[16/10] w-full rounded-xl overflow-hidden bg-neutral-900 shadow-sm border border-[var(--border-color)]">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900 shadow-sm border border-[var(--border-color)]">
                   <Image
                     src={project.coverImage}
                     alt={project.title[lang]}
@@ -130,7 +139,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
             </div>
 
             {/* Category Filter Pills */}
-            <div className="flex items-center gap-2 bg-[var(--card-bg)] p-1 rounded-full border border-[var(--border-color)] shadow-sm">
+            <div className="flex flex-wrap items-center gap-2 bg-[var(--card-bg)] p-1 rounded-full border border-[var(--border-color)] shadow-sm">
               <button
                 onClick={() => setFilterCategory('all')}
                 className={`text-xs font-mono px-4 py-1.5 rounded-full transition-all ${
@@ -176,7 +185,16 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, delay: idx * 0.03 }}
                   onClick={() => setSelectedProject(project)}
-                  className="group cursor-pointer flex flex-col rounded-xl overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      setSelectedProject(project);
+                    }
+                  }}
+                  aria-label={`${t('Projeyi incele:', 'View project:')} ${project.title[lang]}`}
+                  className="group cursor-pointer flex flex-col overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-gold)]"
                   style={{
                     backgroundColor: 'var(--card-bg)',
                     borderColor: 'var(--border-color)',

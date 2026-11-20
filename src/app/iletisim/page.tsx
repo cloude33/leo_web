@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import { useApp } from '@/context/AppContext';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 export default function IletisimPage() {
   const { t } = useApp();
@@ -32,20 +32,20 @@ export default function IletisimPage() {
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent-gold)]/40 bg-[var(--card-bg)]/80 text-[11px] font-mono tracking-[0.25em] text-[var(--accent-gold)] uppercase mb-6">
               <MapPin size={13} />
-              <span>{t("URLA & ACARKENT OFİSLERİMİZ", "URLA & ACARKENT STUDIOS")}</span>
+              <span>{t("URLA VE İSTANBUL OFİSLERİ", "URLA AND ISTANBUL STUDIOS")}</span>
             </div>
 
             <h1 className="font-serif-luxury text-4xl sm:text-6xl md:text-7xl tracking-tight leading-[1.1] mb-6">
               {t(
-                'Bir Sonraki Yaşam Alanınızı Konuşalım.',
-                'Let Us Discuss Your Next Living Sanctuary.'
+                'Projenizi birlikte değerlendirelim.',
+                'Let’s talk about your project.'
               )}
             </h1>
 
             <p className="text-base sm:text-xl text-[var(--text-muted)] leading-relaxed max-w-2xl font-light">
               {t(
-                "Urla tasarım stüdyomuz veya Acarkent temsilciliğimizde özel bir kahve eşliğinde projenizin mimari vizyonunu planlayabiliriz.",
-                'Schedule a private appointment over coffee at our Urla design atelier or Acarkent boutique office to shape your architectural vision.'
+                'Projelendirme, inşaat veya uygulama aşamasında ihtiyacınızı konuşalım. Urla ya da İstanbul ofisimizde görüşebilir, ilk adımı telefonla da atabilirsiniz.',
+                'Tell us what you need, from design and construction to fit-out. Meet us in Urla or Istanbul, or start with a call.'
               )}
             </p>
           </div>

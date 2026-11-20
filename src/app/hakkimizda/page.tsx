@@ -44,8 +44,8 @@ export default function HakkimizdaPage() {
 
             <p className="text-base sm:text-xl text-[var(--text-muted)] leading-relaxed max-w-2xl font-light">
               {t(
-                "2004 yılında İstanbul ve Urla'da başlayan yolculuğumuz, seri üretime karşı duran ve yılda yalnızca bir başyapıt üreten butik bir mimari disipline dönüştü.",
-                'Originating in 2004 between Istanbul and Urla, our journey evolved into a boutique architectural atelier defying mass production to craft singular annual masterpieces.'
+                "2004'ten beri Urla ve İstanbul'da projelendirme, inşaat ve uygulamayı aynı ofiste yürütüyoruz.",
+                'Since 2004 we have run design, construction and execution from the same office in Urla and Istanbul.'
               )}
             </p>
           </div>

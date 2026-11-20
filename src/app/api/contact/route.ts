@@ -32,48 +32,53 @@ export async function POST(request: Request) {
     const formattedProjectType = projectTypeLabels[projectType] || projectType;
     const formattedLocation = locationLabels[location] || location;
 
-    console.log(`[Contact Form Received] Target: ${recipient}`);
-    console.log({
-      name,
-      phone,
-      email: email || 'Belirtilmedi',
-      projectType: formattedProjectType,
-      location: formattedLocation,
-      message: message || 'Not girilmedi',
-      timestamp: new Date().toISOString(),
-    });
-
-    // Check if an external provider API key or webhook is configured
     const resendApiKey = process.env.RESEND_API_KEY;
-    if (resendApiKey) {
-      try {
-        await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${resendApiKey}`,
-          },
-          body: JSON.stringify({
-            from: 'LEO Mimarlık Web <onboarding@resend.dev>',
-            to: [recipient],
-            subject: emailSubject,
-            html: `
+    if (!resendApiKey) {
+      return NextResponse.json(
+        { error: 'E-posta gönderimi yapılandırılmamış.' },
+        { status: 503 }
+      );
+    }
+
+    const escapeHtml = (value: unknown) =>
+      String(value ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#39;');
+
+    const resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${resendApiKey}`,
+      },
+      body: JSON.stringify({
+        from: 'LEO Mimarlık Web <onboarding@resend.dev>',
+        to: [recipient],
+        subject: emailSubject,
+        html: `
               <h2>Yeni Proje Danışmanlık Talebi</h2>
-              <p><strong>Ad Soyad:</strong> ${name}</p>
-              <p><strong>Telefon:</strong> <a href="tel:${phone}">${phone}</a></p>
-              <p><strong>E-Posta:</strong> ${email || 'Belirtilmedi'}</p>
-              <p><strong>Lokasyon:</strong> ${formattedLocation}</p>
-              <p><strong>Proje Tipi:</strong> ${formattedProjectType}</p>
+              <p><strong>Ad Soyad:</strong> ${escapeHtml(name)}</p>
+              <p><strong>Telefon:</strong> ${escapeHtml(phone)}</p>
+              <p><strong>E-Posta:</strong> ${escapeHtml(email || 'Belirtilmedi')}</p>
+              <p><strong>Lokasyon:</strong> ${escapeHtml(formattedLocation)}</p>
+              <p><strong>Proje Tipi:</strong> ${escapeHtml(formattedProjectType)}</p>
               <p><strong>Notlar / Mesaj:</strong></p>
-              <p style="white-space: pre-wrap; background: #f5f5f5; padding: 12px; border-radius: 8px;">${message || 'Belirtilmedi'}</p>
+              <p style="white-space: pre-wrap; background: #f5f5f5; padding: 12px; border-radius: 8px;">${escapeHtml(message || 'Belirtilmedi')}</p>
               <hr />
               <small>Bu mesaj LEO Yapı & Mimarlık web sitesi iletişim formundan otomatik iletilmiştir.</small>
             `,
-          }),
-        });
-      } catch (err) {
-        console.error('Failed to send via Resend:', err);
-      }
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      console.error('Contact email provider returned status:', resendResponse.status);
+      return NextResponse.json(
+        { error: 'E-posta gönderimi başarısız oldu.' },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({

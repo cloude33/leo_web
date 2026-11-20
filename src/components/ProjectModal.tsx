@@ -72,7 +72,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   ];
 
   const currentImage = images[activeImageIndex] || project.coverImage;
-  const bottomImage = images[images.length - 1] || currentImage;
 
   return (
     <motion.div
@@ -369,37 +368,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
         </div>
 
-        {/* 5. Bottom Architectural Eye-Level Photo (Mockup 2 Continuation) */}
-        {bottomImage && (
-          <div
-            onClick={() => {
-              setActiveImageIndex(images.length - 1);
-              setIsFullscreen(true);
-            }}
-            className="relative aspect-[16/9] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden mt-12 shadow-lg border border-[var(--border-color)] cursor-zoom-in bg-[#0a0a0a] flex items-center justify-center"
-            title={t('Büyük boyutta incelemek için tıklayın', 'Click to view fullscreen')}
-          >
-            {/* Ambient blurred backdrop */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <Image
-                src={bottomImage}
-                alt=""
-                fill
-                className="object-cover blur-2xl opacity-20 scale-110"
-                aria-hidden="true"
-              />
-              <div className="absolute inset-0 bg-black/30" />
-            </div>
-
-            <Image
-              src={bottomImage}
-              alt="Project Detail Showcase"
-              fill
-              sizes="100vw"
-              className="object-contain relative z-10 select-none"
-            />
-          </div>
-        )}
       </div>
 
       {/* 6. Fullscreen Interactive Lightbox Modal */}

@@ -1,135 +1,126 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useApp } from '@/context/AppContext';
-import { Compass, PenTool, Home, Landmark, Building2, Eye } from 'lucide-react';
 
-export default function Services() {
-  const { t } = useApp();
+const pillars = [
+  {
+    num: '01',
+    image: '/projects/gaia-vadi-4/img_8.avif',
+    alt: 'Urla Gaia Çiftlik Evleri 4',
+    title: { tr: 'Projelendirme', en: 'Design' },
+    body: {
+      tr: 'Hayalinizdeki mekânı, bütçeniz doğrultusunda en ideal çözümle tasarlıyoruz. Ruhsat projelerinden, cephe, iç mimari tasarım ve uygulama projelerine kadar tüm süreci tek bir çatı altında kurguluyoruz. Böylece hem teknik hem de estetik anlamda uyumlu ve büyüleyici projeler üretiyoruz.',
+      en: 'We design the place you have in mind as the right fit for your budget. Permit drawings, facade, interior design and working drawings all sit under one roof, so the project stays coherent in both its engineering and its appearance.',
+    },
+  },
+  {
+    num: '02',
+    image: '/projects/urla-kuscular-12-tas-ev/img_1.avif',
+    alt: 'Urla Bizim Sokak 12 Taş Ev',
+    title: { tr: 'İnşaat', en: 'Construction' },
+    body: {
+      tr: 'Yapı sahibinin ihtiyaçları üzerine hazırladığımız ruhsat projeleri ile şantiye uygulama projelerini titizlikle süperpoze ediyoruz. Böylece sahada hem kullanıcı ihtiyaçlarını karşılayan hem de ilgili yönetmeliklere uygun sıra dışı yapılar inşa ediyoruz.',
+      en: 'We carefully overlay the permit set, prepared around the owner’s needs, with the site working drawings. What is built meets those needs and the relevant regulations, and still stands as a distinctive building.',
+    },
+  },
+  {
+    num: '03',
+    image: '/projects/acarkent-penthouse/img_2.avif',
+    alt: 'Acarkent AcarVerde Penthouse',
+    title: { tr: 'Uygulama', en: 'Execution' },
+    body: {
+      tr: 'Tasarlanmış olan projeyi; en kaba imalatlarından, en ince ayrıntılarına kadar hayata geçiriyoruz. Bu süreçte gerekli olan tüm ürünleri özenle seçiyor, ekipleri organize ediyor ve işin finalinde özgün eserler ortaya çıkarıyoruz.',
+      en: 'We carry the designed project from the roughest works through to the finest detail. Along the way we choose every product with care, organise the crews, and finish with a piece of work that is its own.',
+    },
+  },
+] as const;
 
-  const services = [
-    {
-      icon: <Compass size={28} className="text-[var(--accent-gold)]" />,
-      num: '01',
-      title: t('Mimari Tasarım & Konsept', 'Architectural Design & Concept'),
-      desc: t(
-        'Arazinin ışığı, rüzgarı ve manzarasına göre şekillenen özgün mimari avan projeler, belediye ruhsat süreçleri ve şematik planlar.',
-        'Site-specific conceptual architecture, environmental sun/wind orientation, municipal permitting, and schematic planning.'
-      )
-    },
-    {
-      icon: <PenTool size={28} className="text-[var(--accent-gold)]" />,
-      num: '02',
-      title: t('İç Mimari & Özel Mobilya', 'Interior Architecture & Bespoke Millwork'),
-      desc: t(
-        'Mekanların ruhuna uygun malzeme seçimleri, mermer, ahşap ve pirinç detaylar, mekana özel üretilen sabit ve hareketli mobilyalar.',
-        'Curated material palettes, custom marble detailing, architectural joinery, and tailored loose furniture design.'
-      )
-    },
-    {
-      icon: <Home size={28} className="text-[var(--accent-gold)]" />,
-      num: '03',
-      title: t('Uygulama Projeleri & Detay Çözümleri', 'Construction Documents & Detail Engineering'),
-      desc: t(
-        'Statik, mekanik ve elektrik mühendisliği ile entegre, şantiyede sıfır hata hedefleyen 1/20, 1/5 ve 1/1 imalat detay paftaları.',
-        'Integrated working drawings, structural/MEP coordination, and 1:1 fabrication mockups ensuring zero tolerance on site.'
-      )
-    },
-    {
-      icon: <Eye size={28} className="text-[var(--accent-gold)]" />,
-      num: '04',
-      title: t('3D Görselleştirme & Sinematik Render', '3D Photorealistic Visualization'),
-      desc: t(
-        'Projenin tamamlanmış halini gün ışığı simülasyonları, 4K renderlar ve sinematik animasyonlar ile henüz temel atılmadan deneyimleme.',
-        'Photorealistic daylight simulations, 4K material studies, and cinematic walkthroughs before ground is broken.'
-      )
-    },
-    {
-      icon: <Building2 size={28} className="text-[var(--accent-gold)]" />,
-      num: '05',
-      title: t('Anahtar Teslim İnşaat & Taahhüt', 'Turnkey Construction & Execution'),
-      desc: t(
-        'Kaba yapıdan ince işçiliğe, peyzajdan akıllı ev otomasyonuna dek tüm şantiye yönetimini tek elden yürüten taahhüt hizmeti.',
-        'Complete general contracting from excavation and fine artisan masonry to landscaping and home automation.'
-      )
-    },
-    {
-      icon: <Landmark size={28} className="text-[var(--accent-gold)]" />,
-      num: '06',
-      title: t('Urla Taş Ev Restorasyon & Eko-Çiftlik', 'Urla Stone Restoration & Eco-Estates'),
-      desc: t(
-        'Tarihi Urla taş dokularının korunarak çağdaş villa konforuyla donatılması ve çok dönümlük arazilerde tarımsal çiftlik kurgusu.',
-        'Heritage stone masonry restoration combined with modern comfort, alongside multi-acre agricultural estate masterplanning.'
-      )
-    }
-  ];
+export default function Services({ showIntro = true }: { showIntro?: boolean }) {
+  const { lang, t } = useApp();
 
   return (
-    <section id="services" className="py-24 md:py-32 relative border-t"
-      style={{ borderColor: 'var(--border-color)' }}
+    <section
+      id="services"
+      className="py-20 md:py-28 border-b"
+      style={{ borderColor: 'var(--border-color)', backgroundColor: 'var(--bg-page)' }}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        {/* Section Heading */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-8 h-[1px] bg-[var(--accent-gold)]" />
-            <span className="text-xs font-mono tracking-[0.25em] text-[var(--accent-gold)] uppercase">
-              {t('KAPSAM & UZMANLIK', 'CAPABILITIES & EXPERTISE')}
-            </span>
-            <span className="w-8 h-[1px] bg-[var(--accent-gold)]" />
+        {showIntro && (
+          <div className="max-w-3xl mb-16 md:mb-20">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="w-8 h-px bg-[var(--accent-gold)]" />
+              <span className="text-[11px] font-mono tracking-[0.28em] text-[var(--accent-gold)] uppercase">
+                {t('Üç iş, tek ofis', 'Three trades, one office')}
+              </span>
+            </div>
+            <h2 className="font-serif-luxury text-4xl sm:text-5xl md:text-6xl tracking-tight leading-[1.05] mb-5">
+              {t('Projelendirme, inşaat, uygulama.', 'Design, construction, execution.')}
+            </h2>
+            <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed max-w-2xl">
+              {t(
+                'Ruhsat çiziminden ince imalata kadar aynı ekip. İşi ayrı ofislere bölmüyoruz.',
+                'From the permit set to the last finish, the same team. The work is not split across separate offices.'
+              )}
+            </p>
           </div>
+        )}
 
-          <h2 className="font-serif-luxury text-3xl sm:text-5xl md:text-6xl tracking-tight mb-6">
-            {t('Eksiksiz Mimari ve Yapı Çözümleri', 'Comprehensive Architectural Disciplines')}
-          </h2>
-
-          <p className="text-base text-[var(--text-muted)] leading-relaxed">
-            {t(
-              'Konsept eskizinden anahtar teslim teslimata kadar tüm süreci kendi bünyemizdeki mimar, mühendis ve zanaatkarlarımızla yönetiyoruz.',
-              'Managing every phase from conceptual sketches to final handover through our in-house architects, engineers, and artisans.'
-            )}
-          </p>
-        </div>
-
-        {/* Services 3x2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((srv, index) => (
-            <div
-              key={index}
-              className="p-8 rounded-xl border flex flex-col justify-between transition-all duration-300 hover:border-[var(--accent-gold)] hover:-translate-y-1 group"
-              style={{
-                backgroundColor: 'var(--card-bg)',
-                borderColor: 'var(--border-color)'
-              }}
-            >
-              <div>
-                <div className="flex items-center justify-between mb-8">
-                  <div className="p-3 rounded-lg bg-[var(--border-color)]/20 group-hover:scale-110 transition-transform">
-                    {srv.icon}
+        <div className="flex flex-col gap-16 md:gap-24">
+          {pillars.map((item, index) => {
+            const imageFirst = index % 2 === 0;
+            return (
+              <article
+                key={item.num}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center"
+              >
+                <div className={`lg:col-span-7 ${imageFirst ? '' : 'lg:order-2'}`}>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900">
+                    <Image
+                      src={item.image}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 58vw"
+                      className="object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+                    />
                   </div>
-                  <span className="font-mono text-xs opacity-40 group-hover:text-[var(--accent-gold)] transition-colors">
-                    {srv.num}
-                  </span>
                 </div>
 
-                <h3 className="font-serif-luxury text-xl font-medium tracking-tight mb-3 group-hover:text-[var(--accent-gold)] transition-colors">
-                  {srv.title}
-                </h3>
+                <div className={`lg:col-span-5 flex flex-col gap-4 ${imageFirst ? '' : 'lg:order-1'}`}>
+                  <span className="font-mono text-xs tracking-[0.28em] text-[var(--accent-gold)]">
+                    {item.num}
+                  </span>
+                  <h3 className="font-serif-luxury text-3xl sm:text-4xl tracking-tight">
+                    {item.title[lang]}
+                  </h3>
+                  <p className="text-base text-[var(--text-muted)] leading-relaxed">
+                    {item.body[lang]}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
+        </div>
 
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
-                  {srv.desc}
-                </p>
-              </div>
-
-              <div className="pt-6 mt-6 border-t border-[var(--border-color)]/40 flex items-center justify-between text-[11px] font-mono tracking-wider opacity-60 group-hover:opacity-100 transition-opacity">
-                <span>{t('STANDART', 'STANDARD')}</span>
-                <span className="text-[var(--accent-gold)]">LEO GRADE</span>
-              </div>
-            </div>
-          ))}
+        <div className="mt-16 md:mt-20 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 border-t pt-8"
+          style={{ borderColor: 'var(--border-color)' }}
+        >
+          <p className="font-serif-luxury text-2xl sm:text-3xl tracking-tight max-w-xl">
+            {t(
+              'Bir sonraki mekânı bu üç işin bir arada yürüdüğü ofiste konuşalım.',
+              'Let us talk about the next place in the office where these three trades run together.'
+            )}
+          </p>
+          <Link
+            href="/iletisim"
+            className="inline-flex items-center justify-center min-h-11 px-6 bg-[var(--accent-gold)] text-black font-mono text-xs tracking-[0.18em] uppercase hover:opacity-90 active:scale-[0.98] transition-all shrink-0"
+          >
+            {t('Görüşme ayarla', 'Arrange a meeting')}
+          </Link>
         </div>
       </div>
     </section>
   );
 }
-
