@@ -8,8 +8,8 @@ import { useApp } from '@/context/AppContext';
 const pillars = [
   {
     num: '01',
-    image: '/projects/gaia-vadi-4/img_8.avif',
-    alt: 'Urla Gaia Çiftlik Evleri 4',
+    image: '/services/projelendirme.jpg',
+    alt: 'Mimari Projelendirme ve Tasarım',
     title: { tr: 'Projelendirme', en: 'Design' },
     body: {
       tr: 'Hayalinizdeki mekânı, bütçeniz doğrultusunda en ideal çözümle tasarlıyoruz. Ruhsat projelerinden, cephe, iç mimari tasarım ve uygulama projelerine kadar tüm süreci tek bir çatı altında kurguluyoruz. Böylece hem teknik hem de estetik anlamda uyumlu ve büyüleyici projeler üretiyoruz.',
@@ -18,8 +18,8 @@ const pillars = [
   },
   {
     num: '02',
-    image: '/projects/urla-kuscular-12-tas-ev/img_1.avif',
-    alt: 'Urla Bizim Sokak 12 Taş Ev',
+    image: '/services/insaat.jpg',
+    alt: 'İnşaat ve Şantiye Yönetimi',
     title: { tr: 'İnşaat', en: 'Construction' },
     body: {
       tr: 'Yapı sahibinin ihtiyaçları üzerine hazırladığımız ruhsat projeleri ile şantiye uygulama projelerini titizlikle süperpoze ediyoruz. Böylece sahada hem kullanıcı ihtiyaçlarını karşılayan hem de ilgili yönetmeliklere uygun sıra dışı yapılar inşa ediyoruz.',
@@ -28,8 +28,8 @@ const pillars = [
   },
   {
     num: '03',
-    image: '/projects/acarkent-penthouse/img_2.avif',
-    alt: 'Acarkent AcarVerde Penthouse',
+    image: '/services/uygulama.jpg',
+    alt: 'İç Mimari ve İnce İmalat Uygulaması',
     title: { tr: 'Uygulama', en: 'Execution' },
     body: {
       tr: 'Tasarlanmış olan projeyi; en kaba imalatlarından, en ince ayrıntılarına kadar hayata geçiriyoruz. Bu süreçte gerekli olan tüm ürünleri özenle seçiyor, ekipleri organize ediyor ve işin finalinde özgün eserler ortaya çıkarıyoruz.',
