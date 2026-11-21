@@ -8,7 +8,7 @@ import { useApp } from '@/context/AppContext';
 const pillars = [
   {
     num: '01',
-    image: '/services/projelendirme.jpg',
+    image: '/services/projelendirme.avif',
     alt: 'Mimari Projelendirme ve Tasarım',
     title: { tr: 'Projelendirme', en: 'Design' },
     body: {
@@ -18,7 +18,7 @@ const pillars = [
   },
   {
     num: '02',
-    image: '/services/insaat.jpg',
+    image: '/services/insaat.avif',
     alt: 'İnşaat ve Şantiye Yönetimi',
     title: { tr: 'İnşaat', en: 'Construction' },
     body: {
@@ -28,7 +28,7 @@ const pillars = [
   },
   {
     num: '03',
-    image: '/services/uygulama.jpg',
+    image: '/services/uygulama.avif',
     alt: 'İç Mimari ve İnce İmalat Uygulaması',
     title: { tr: 'Uygulama', en: 'Execution' },
     body: {

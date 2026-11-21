@@ -27,6 +27,9 @@ test-screenshots/
 *.pem
 .agents/
 ponytail/
+.planning/
+graphify-out/
+convert_to_avif.*
 
 # debug
 npm-debug.log*

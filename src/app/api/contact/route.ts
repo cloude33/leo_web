@@ -3,7 +3,18 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, phone, email, projectType, location, message } = body;
+    const { name, phone, email, projectType, location, message, _hp, _ts } = body;
+
+    // Honeypot kontrolü: alan doluysa bot isteği — sessizce reddet
+    if (_hp && _hp.trim() !== '') {
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
+
+    // Zaman koruması: formun 3 saniyeden kısa sürede gönderilmesi bot belirtisi
+    const elapsed = Date.now() - Number(_ts || 0);
+    if (elapsed < 3000) {
+      return NextResponse.json({ success: true }, { status: 200 });
+    }
 
     if (!name || !phone) {
       return NextResponse.json(

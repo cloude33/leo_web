@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Project, projectsData } from '@/data/projects';
 import { useApp } from '@/context/AppContext';
 import { ArrowUpRight } from 'lucide-react';
@@ -40,7 +41,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
 
   return (
     <>
-      {/* 1. ÖNE ÇIKAN PROJELER (Client Mockup 1 Exact Design) */}
+      {/* Öne Çıkan Projeler */}
       <section
         id="projects"
         className="scroll-mt-24 py-16 md:py-24 border-b transition-colors duration-300 relative"
@@ -73,18 +74,10 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
           {/* 3 Featured Project Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {featuredProjects.map((project) => (
-              <div
+              <Link
                 key={project.id}
+                href={`/projeler/${project.slug}`}
                 data-testid={`featured-card-${project.id}`}
-                onClick={() => setSelectedProject(project)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    setSelectedProject(project);
-                  }
-                }}
                 aria-label={`${t('Projeyi incele:', 'View project:')} ${project.title[lang]}`}
                 className="group cursor-pointer flex flex-col transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-gold)]"
               >
@@ -116,7 +109,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                 <p className="font-mono text-xs tracking-[0.2em] text-[var(--text-muted)] uppercase mt-1">
                   {project.location[lang]} • {project.year} • {project.area}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -184,52 +177,47 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.35, delay: idx * 0.03 }}
-                  onClick={() => setSelectedProject(project)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                      event.preventDefault();
-                      setSelectedProject(project);
-                    }
-                  }}
-                  aria-label={`${t('Projeyi incele:', 'View project:')} ${project.title[lang]}`}
-                  className="group cursor-pointer flex flex-col overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-gold)]"
-                  style={{
-                    backgroundColor: 'var(--card-bg)',
-                    borderColor: 'var(--border-color)',
-                  }}
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900">
-                    <Image
-                      src={project.coverImage}
-                      alt={project.title[lang]}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-                    />
-                    <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-mono tracking-widest text-[#D2B07E] uppercase border border-white/10">
-                      {project.category} • {project.year}
+                  <Link
+                    href={`/projeler/${project.slug}`}
+                    aria-label={`${t('Projeyi incele:', 'View project:')} ${project.title[lang]}`}
+                    className="group cursor-pointer flex flex-col overflow-hidden border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--accent-gold)] h-full"
+                    style={{
+                      backgroundColor: 'var(--card-bg)',
+                      borderColor: 'var(--border-color)',
+                    }}
+                  >
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-neutral-900">
+                      <Image
+                        src={project.coverImage}
+                        alt={project.title[lang]}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+                      />
+                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-md bg-black/60 backdrop-blur-md text-[10px] font-mono tracking-widest text-[#D2B07E] uppercase border border-white/10">
+                        {project.category} • {project.year}
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="p-5 flex flex-col justify-between flex-1">
-                    <div>
-                      <h4 className="font-serif-luxury text-lg font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-2">
-                        {project.title[lang]}
-                      </h4>
-                      <p className="text-xs text-[var(--text-muted)] line-clamp-2 leading-relaxed">
-                        {project.description[lang]}
-                      </p>
-                    </div>
+                    <div className="p-5 flex flex-col justify-between flex-1">
+                      <div>
+                        <h4 className="font-serif-luxury text-lg font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-2">
+                          {project.title[lang]}
+                        </h4>
+                        <p className="text-xs text-[var(--text-muted)] line-clamp-2 leading-relaxed">
+                          {project.description[lang]}
+                        </p>
+                      </div>
 
-                    <div className="pt-4 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-mono text-[var(--text-muted)]">
-                      <span>{project.area}</span>
-                      <span className="flex items-center gap-1 text-[var(--accent-gold)] group-hover:translate-x-0.5 transition-transform">
-                        {t('İNCELE', 'VIEW')} <ArrowUpRight size={13} />
-                      </span>
+                      <div className="pt-4 mt-4 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-mono text-[var(--text-muted)]">
+                        <span>{project.area}</span>
+                        <span className="flex items-center gap-1 text-[var(--accent-gold)] group-hover:translate-x-0.5 transition-transform">
+                          {t('İNCELE', 'VIEW')} <ArrowUpRight size={13} />
+                        </span>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -237,7 +225,7 @@ export default function Projects({ filterCategory, setFilterCategory }: Projects
         </div>
       </section>
 
-      {/* 3. PROJECT DETAIL MODAL (Matching Client Mockup 2 Exact Design) */}
+      {/* Proje Detay Modal */}
       <AnimatePresence>
         {selectedProject && (
           <ProjectModal

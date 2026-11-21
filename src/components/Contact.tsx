@@ -32,6 +32,11 @@ export default function Contact() {
     location: 'urla',
     message: ''
   });
+  const [honeypot, setHoneypot] = useState('');
+  const formStartTime = React.useRef<number>(0);
+  React.useEffect(() => {
+    formStartTime.current = Date.now();
+  }, []);
 
   const getMailtoUrl = () => {
     const subject = encodeURIComponent(`[LEO Mimarlık Web] Proje Danışmanlık Talebi - ${formData.name}`);
@@ -57,7 +62,11 @@ export default function Contact() {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          _hp: honeypot,
+          _ts: formStartTime.current,
+        }),
       });
       if (!response.ok) throw new Error('Contact request failed');
       setSubmitted(true);
@@ -245,6 +254,17 @@ export default function Contact() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6 text-xs">
+                  {/* Honeypot - gizli alan, botlar doldurur insanlar görmez */}
+                  <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }}>
+                    <input
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="flex flex-col gap-2">
                       <label className="font-mono uppercase opacity-70">

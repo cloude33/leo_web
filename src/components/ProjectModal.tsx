@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/data/projects';
 import { useApp } from '@/context/AppContext';
+import { useSwipe } from '@/hooks/useSwipe';
 import {
   ArrowLeft,
   ArrowRight,
@@ -39,6 +40,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  const swipeHandlers = useSwipe(nextImage, prevImage);
+
   // Keyboard navigation & escape listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -62,7 +65,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [onClose, images.length, isFullscreen]);
 
-  // 5 standard services matching client mockup 2
+  // Hizmetler listesi
   const servicesList = [
     t('Mimari Tasarım', 'Architectural Design'),
     t('İç Mimari Tasarım', 'Interior Architecture'),
@@ -82,7 +85,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       className="fixed inset-0 z-50 overflow-y-auto"
       style={{ backgroundColor: 'var(--bg-page)', color: 'var(--text-primary)' }}
     >
-      {/* 1. Header / Navbar Matching Client Mockup 2 */}
+      {/* Header */}
       <header
         className="sticky top-0 z-40 py-3.5 px-6 md:px-12 flex items-center justify-between border-b transition-colors"
         style={{
@@ -169,8 +172,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className="lg:col-span-8 flex flex-col">
             {/* Main Stage Image (Clicking opens fullscreen lightbox) */}
             <div
+              {...swipeHandlers}
               onClick={() => setIsFullscreen(true)}
-              className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#0a0a0a] shadow-lg select-none group border border-[var(--border-color)] cursor-zoom-in flex items-center justify-center"
+              className="relative aspect-[16/10] sm:aspect-[16/9] w-full rounded-2xl overflow-hidden bg-[#0a0a0a] shadow-lg select-none group border border-[var(--border-color)] cursor-zoom-in flex items-center justify-center touch-pan-y"
               title={t('Büyük boyutta incelemek için tıklayın', 'Click to view fullscreen')}
             >
               {/* Subtle ambient blurred background matching the photo */}
@@ -212,7 +216,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   prevImage();
                 }}
                 aria-label="Previous Image"
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md z-10"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white hidden sm:flex items-center justify-center transition-all cursor-pointer shadow-md z-10"
               >
                 <ArrowLeft size={18} />
               </button>
@@ -224,7 +228,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   nextImage();
                 }}
                 aria-label="Next Image"
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white flex items-center justify-center transition-all cursor-pointer shadow-md z-10"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/60 hover:bg-black/85 text-white hidden sm:flex items-center justify-center transition-all cursor-pointer shadow-md z-10"
               >
                 <ArrowRight size={18} />
               </button>
@@ -255,7 +259,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </button>
             </div>
 
-            {/* Thumbnail Strip Directly Below Main Image (Mockup 2 Exact Alignment) */}
+            {/* Thumbnail Strip */}
             <div className="grid grid-cols-6 gap-2 sm:gap-3 mt-4">
               {images.slice(0, 6).map((img, idx) => (
                 <div
@@ -304,7 +308,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
         </div>
 
-        {/* 4. Proje Detayları Strip (Mockup 2 Exact 5-Column Metrics) */}
+        {/* Proje Detayları Strip */}
         <div className="mt-16 md:mt-20">
           <div className="flex items-center gap-3 mb-8">
             <h2 className="font-serif-luxury text-2xl sm:text-3xl text-[var(--text-primary)] font-normal tracking-tight">
@@ -373,7 +377,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       {/* 6. Fullscreen Interactive Lightbox Modal */}
       {isFullscreen && (
         <div
-          className="fixed inset-0 z-60 bg-black/95 flex flex-col items-center justify-center p-4 select-none backdrop-blur-md animate-in fade-in duration-200"
+          {...swipeHandlers}
+          className="fixed inset-0 z-60 bg-black/95 flex flex-col items-center justify-center p-4 select-none backdrop-blur-md animate-in fade-in duration-200 touch-pan-y"
           onClick={() => setIsFullscreen(false)}
         >
           {/* Top Info & Close Bar */}
@@ -404,7 +409,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               prevImage();
             }}
             aria-label="Previous Photo"
-            className="absolute left-3 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-[#D2B07E] text-white hover:text-[#D2B07E] flex items-center justify-center transition-all cursor-pointer shadow-2xl group pointer-events-auto"
+            className="absolute left-3 sm:left-6 md:left-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-[#D2B07E] text-white hover:text-[#D2B07E] hidden sm:flex items-center justify-center transition-all cursor-pointer shadow-2xl group pointer-events-auto"
           >
             <ArrowLeft size={24} className="group-hover:-translate-x-0.5 transition-transform" />
           </button>
@@ -416,7 +421,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               nextImage();
             }}
             aria-label="Next Photo"
-            className="absolute right-3 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-[#D2B07E] text-white hover:text-[#D2B07E] flex items-center justify-center transition-all cursor-pointer shadow-2xl group pointer-events-auto"
+            className="absolute right-3 sm:right-6 md:right-10 top-1/2 -translate-y-1/2 z-30 w-12 h-12 md:w-14 md:h-14 rounded-full bg-black/60 hover:bg-black/90 border border-white/25 hover:border-[#D2B07E] text-white hover:text-[#D2B07E] hidden sm:flex items-center justify-center transition-all cursor-pointer shadow-2xl group pointer-events-auto"
           >
             <ArrowRight size={24} className="group-hover:translate-x-0.5 transition-transform" />
           </button>
